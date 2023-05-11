@@ -4,7 +4,7 @@ interface IProps {
 
 const Page = ({ children,  }: IProps) => {
   return (
-    <main className="flex items-center justify-center min-h-full">
+    <main className="max-w-full h-full flex flex-col relative">
       {children}
     </main>
   )
