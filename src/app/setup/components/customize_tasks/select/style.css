@@ -1,0 +1,9 @@
+button {
+    all: unset;
+}
+
+.SelectItem[data-highlighted] {
+    outline: none;
+    @apply bg-blue-500;
+    @apply text-white;
+}

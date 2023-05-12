@@ -2,7 +2,7 @@ interface IProps {
   children: React.ReactNode
 }
 
-const SelectHeader = ({ children }: IProps) => {
+const SelectHeading = ({ children }: IProps) => {
   
   return (
     <h3 className='text-xl flex gap-1 sm:items-center sm:flex-col'>
@@ -11,4 +11,4 @@ const SelectHeader = ({ children }: IProps) => {
     )
 }
 
-export default SelectHeader
+export default SelectHeading
