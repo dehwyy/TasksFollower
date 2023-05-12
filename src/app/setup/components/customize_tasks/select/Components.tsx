@@ -18,21 +18,21 @@ interface IProps {
 const Components = ({items, placeholder}: IProps) => {
     return (
       <Select.Root>
-        <Select.Trigger className={`${SelectFont.className} inline-flex items-center justify-center gap-2 bg-white rounded-md px-5 shadow-lg shadow-current text-blue-400`}>
-          <Select.Value placeholder="Select a fruit…" />
+        <Select.Trigger className={`${SelectFont.className} flex items-center justify-center gap-2 bg-white rounded-md px-5 shadow-lg shadow-current text-blue-400`}>
+          <Select.Value placeholder={placeholder} />
           <Select.Icon>
             <ChevronDownIcon />
           </Select.Icon>
         </Select.Trigger>
         <Select.Portal>
-          <Select.Content className={`${SelectFont.className} bg-blue-600 overflow-hidden rounded-md`}>
+          <Select.Content className={`${SelectFont.className} overflow-hidden rounded-md`}>
             <Select.ScrollUpButton className="SelectScrollButton">
               <ChevronUpIcon />
             </Select.ScrollUpButton>
-            <Select.Viewport className="rounded-md py-2 px-1 bg-white">
+            <Select.Viewport className="rounded-md py-2 bg-white w-full">
               <Select.Group>
                 {items.map(item => (
-                  <Select.Item value={String(item.value)} key={item.id} className={`SelectItem rounded-md flex items-center justify-between bg-white px-5 text-blue-400`}>
+                  <Select.Item value={String(item.value)} key={item.id} className={`SelectItem rounded-md flex items-center justify-between bg-white px-5 min-w-full text-blue-400`}>
                     <Select.ItemText>{item.name}</Select.ItemText>
                     <Select.ItemIndicator className="SelectItemIndicator">
                       <CheckIcon />

@@ -1,5 +1,7 @@
 'use client'
-import {Provider} from 'jotai'
+import { CacheProvider } from '@chakra-ui/next-js'
+import { ChakraProvider } from '@chakra-ui/react'
+import { Provider } from 'jotai'
 
 interface IProps {
   children: React.ReactNode
@@ -7,9 +9,11 @@ interface IProps {
 
 const Providers = ({ children }: IProps) => {
   return (
-    <Provider>
-      {children}
-    </Provider>
+    <CacheProvider>
+      <ChakraProvider>
+        <Provider>{children}</Provider>
+      </ChakraProvider>
+    </CacheProvider>
   )
 }
 

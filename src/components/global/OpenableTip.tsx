@@ -14,7 +14,7 @@ interface IProps {
 const OpenableTip = ({tip}: IProps) => {
   const [isOpen, setOpen] = useState(false)
     return (
-      <span className='pt-0.5 cursor-pointer flex sm:flex-col sm:pb-2 text-sm items-center gap-1' onClick={() => setOpen(false)}>
+      <span className='pt-0.5 cursor-pointer flex sm:flex-col sm:pb-2 text-[0.7rem] items-center gap-1' onClick={() => setOpen(false)}>
         <Image src={InfoIcon} alt="InfoIcon" onClick={(e) => {
           e.stopPropagation()
           setOpen(p => !p)
