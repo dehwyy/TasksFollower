@@ -4,7 +4,7 @@ import InfoIcon from "../../../public/icons/info.svg"
 import OpenableTip from '@/components/global/OpenableTip'
 import SelectWrapper from '@/app/setup/components/SelectWrapper'
 import SelectHeading from '@/app/setup/components/SelectHeading'
-import Component from '@/app/setup/components/customize_tasks/Component'
+import CustomizeTasks from '@/app/setup/components/customize_tasks/Component'
 interface IProps {
 
 }
@@ -88,7 +88,7 @@ const Page = ({}: IProps) => {
                   ))}
                 </div>
               </div>
-              <Component />
+              <CustomizeTasks />
             </div>
         </div>
     )

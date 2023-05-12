@@ -9,7 +9,7 @@ interface IProps {
 const Navbar = ({}: IProps) => {
 
     return (
-        <nav className="w-full bg-[#343434] text-light-gray">
+        <nav style={{width: "max(100%, 100vw)"}} className="bg-[#343434] text-light-gray">
           <div className="mx-auto flex justify-center w-3/5 lg:w-4/5 sm:w-full text-xl py-5">
             <div className="flex sm:flex-col ">
               <div className="cursor-pointer px-5 py-2 hover:text-white transition-all">

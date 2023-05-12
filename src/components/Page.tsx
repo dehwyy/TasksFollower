@@ -4,7 +4,7 @@ interface IProps {
 
 const Page = ({ children,  }: IProps) => {
   return (
-    <main className="max-w-full h-full flex flex-col relative">
+    <main style={{paddingLeft: "calc(100vw - 100%)"}} className="max-w-full h-full flex flex-col relative">
       {children}
     </main>
   )

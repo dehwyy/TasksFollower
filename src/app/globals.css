@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 body {
     height: 100%;
     color: #f4f4f4;
     overflow-x: hidden;
+    @apply bg-blue-500;
+    @apply relative;
 }
 
 ::-webkit-scrollbar {
