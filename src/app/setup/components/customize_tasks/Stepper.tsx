@@ -14,7 +14,9 @@ import { useWindowSize } from 'usehooks-ts'
 const steps = [
   { title: 'Time per task' },
   { title: 'Chill time' },
-  { title: 'Tasks' },
+  { title: 'Time of the start' },
+  { title: 'Time for each task' },
+  { title: 'Configure tasks' },
 ]
 
 const CustomStepper = () => {

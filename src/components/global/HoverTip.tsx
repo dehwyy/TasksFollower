@@ -13,12 +13,11 @@ const HoverTip = ({ children, tip }: IProps) => {
   const hoverRef = useRef(null)
   const isHover = useHover(hoverRef)
   const isHoverDebounced = useDebounce(isHover, 250)
-  const [isOpen, setOpen] = useState(false)
   return (
       <div ref={hoverRef} className='relative w-full'>
         {children}
-        <div className={`${isHoverDebounced ? "opacity-100 visibile" : "opacity-0 invisible"} absolute transition-all left-1/2 -translate-x-1/2`}>
-          <Image src={InfoIcon} alt="InfoIcon" />
+        <div className={`${isHoverDebounced ? "opacity-100 visibile" : "opacity-0 invisible"} whitespace-nowrap absolute transition-all left-1/2 -translate-x-1/2`}>
+          {tip}
         </div>
       </div>
   )
