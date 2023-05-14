@@ -18,7 +18,7 @@ const createdTasks: typeof tasks = [{ id: 1, title: 'To code some time', tags: [
 
 const TasksCreator = ({}: IProps) => {
   const [isEditMode, setEditMode] = useState(false)
-  const [newTaskValue, setNewTaskValue] = useState("")
+  const [newTaskValue, setNewTaskValue] = useState('')
   return (
     <div className="w-4/5 mx-auto lg:w-full pb-5">
       <h2 className="text-center text-2xl underline decoration-2 pb-5">Configure tasks</h2>
@@ -40,19 +40,30 @@ const TasksCreator = ({}: IProps) => {
         {createdTasks.map(layout => (
           <SelectItem title={layout.title} callback={() => {}} key={layout.id} />
         ))}
-        <div className={`${isEditMode ? 'opacity-100 visible' : 'opacity-0 invisible'} w-full cursor-pointer select-none transition-all`}>
+        <div
+          className={`${
+            isEditMode ? 'opacity-100 visible' : 'opacity-0 invisible'
+          } place-self-start lg:w-[85%] w-full cursor-pointer select-none transition-all`}>
           <div className="text-blue-500 text-center relative">
-            <Input value={newTaskValue} onChange={e => setNewTaskValue(e.target.value)} placeholder="Write task title..." size="sm" className="bg-white rounded-xl p-2" />
-            <span onClick={() => {
-              setEditMode(false)
-              createdTasks.push({
-                id: createdTasks.length + 1,
-                title: newTaskValue,
-                tags: [newTaskValue]
-              })
-              setNewTaskValue("")
-            }} className='absolute -right-10 top-1/2 -translate-y-1/2 z-20 border-2 border-blue-500 bg-white rounded-full '>
-              <CheckIcon className='w-8 h-full ' />
+            <Input
+              value={newTaskValue}
+              onChange={e => setNewTaskValue(e.target.value)}
+              placeholder="Write task title..."
+              size="sm"
+              className="bg-white rounded-xl p-2"
+            />
+            <span
+              onClick={() => {
+                setEditMode(false)
+                createdTasks.push({
+                  id: createdTasks.length + 1,
+                  title: newTaskValue,
+                  tags: [newTaskValue],
+                })
+                setNewTaskValue('')
+              }}
+              className="absolute -right-10 top-1/2 -translate-y-1/2 z-20 border-2 border-blue-500 bg-white rounded-full ">
+              <CheckIcon className="w-8 h-full " />
             </span>
           </div>
         </div>
