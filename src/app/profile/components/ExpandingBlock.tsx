@@ -9,7 +9,7 @@ const ExpandingBlock = ({ children }: IProps) => {
   const [isOpened, setIsOpened] = useState(true)
   return (
     <div>
-      <div className="flex select-none bg-blue-700 w-full p-5 rounded-lg ">
+      <div className="flex select-none bg-white text-blue-500 w-full p-5 rounded-lg ">
         <h3 className="text-2xl">Used layouts</h3>
         <span>
           {isOpened ? (

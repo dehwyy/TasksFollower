@@ -1,8 +1,7 @@
 'use client'
 import { Roboto } from 'next/font/google'
-import { useState } from 'react'
-import { ChevronDownIcon, ChevronUpIcon } from '@radix-ui/react-icons'
 import ExpandingBlock from '@/app/profile/components/ExpandingBlock'
+import { Divider } from '@chakra-ui/react'
 
 interface IProps {}
 
@@ -40,21 +39,32 @@ const Page = ({}: IProps) => {
       </section>
       <section className="w-full relative">
         <ExpandingBlock>
-          {layouts.map(layout => (
-            <div key={layout.id} className="first:rounded-t-lg last:rounded-b-lg bg-blue-600 py-7 px-2  grid grid-cols-3 w-full">
-              <div className="text-center">
-                At {layout.at.toLocaleTimeString()} {String(layout.at.getDate()).padStart(2, '0')}.{String(layout.at.getMonth()).padStart(2, '0')}.
-                {String(layout.at.getFullYear()).slice(2)}
-              </div>
-              <div className="text-center">Total {layout.tasksCount} tasks</div>
-              <div className="flex flex-col">
-                <span className="underline decoration-2">Tasks:</span>
-                {layout.allTasks.map(task => (
-                  <div key={task.id}>{task.name}</div>
-                ))}
-              </div>
-            </div>
-          ))}
+          {layouts.map((layout, i) => {
+            const divider = layouts.length - i - 1
+            return (
+              <>
+                <div
+                  key={layout.id}
+                  className="first:rounded-t-lg last:rounded-b-lg bg-blue-600 py-7 px-2 grid sm:grid-cols-1 sm:gap-y-5 grid-cols-4 w-full">
+                  <div className="text-center">
+                    At {layout.at.toLocaleTimeString()} {String(layout.at.getDate()).padStart(2, '0')}.{String(layout.at.getMonth()).padStart(2, '0')}
+                    .{String(layout.at.getFullYear()).slice(2)}
+                  </div>
+                  <div className="text-center">Total {layout.tasksCount} tasks</div>
+                  <div className="flex flex-col items-center">
+                    <span className="self-center underline decoration-2">Tasks:</span>
+                    {layout.allTasks.map(task => (
+                      <div key={task.id}>{task.name}</div>
+                    ))}
+                  </div>
+                  <div className="flex items-center justify-center">
+                    <button className="py-2 px-8 bg-white text-blue-500 rounded-xl">Start</button>
+                  </div>
+                </div>
+                {divider ? <Divider className="w-[90%] mx-auto" /> : <></>}
+              </>
+            )
+          })}
         </ExpandingBlock>
       </section>
     </div>
