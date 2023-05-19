@@ -76,7 +76,7 @@ const Presets = () => {
               <DividerComponent orientation="horizontal" />
               <div className="flex flex-col items-center w-full py-3">
                 <div className="text-xl text-red-400 shadow-dark">Time</div>
-                <div className="grid grid-cols-3 w-full place-items-center">
+                <div className="grid grid-cols-3 sm:grid-cols-1 w-full place-items-center">
                   <div className="flex flex-col items-center">
                     <div>Work Time Per Task</div>
                     <div className="text-forShadowYellow">{preset.time.work}</div>

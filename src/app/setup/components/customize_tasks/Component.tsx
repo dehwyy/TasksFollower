@@ -1,10 +1,11 @@
 'use client'
-import { CSSProperties, useState } from 'react'
-import Heading from '@/app/setup/components/customize_tasks/Heading'
-import Select from '@/app/setup/components/customize_tasks/select/Components'
-import Stepper from '@/app/setup/components/customize_tasks/Stepper'
-import { Divider } from '@chakra-ui/react'
-import TasksCreator from '@/app/setup/components/customize_tasks/TasksCreator'
+import ExpandingBlockFromBottom from '@/app/setup/components/customize_tasks/ExpandingBlockFromBottom'
+import { useState } from 'react'
+import Arrow from '../../../../../public/icons/pointer_arrow.svg'
+import { Input } from '@chakra-ui/input'
+import Image from 'next/image'
+import Panel from '@/app/setup/components/customize_tasks/right_panel/Panel'
+import Tasks from '@/app/setup/components/customize_tasks/right_panel/Tasks'
 
 interface IProps {}
 
@@ -24,81 +25,58 @@ const chillTime = [
   { id: 3, value: 60, name: '1 hour' },
 ]
 
-const startMinutes = Array.from(Array(6).keys()).map(item => ({
-  id: item,
-  value: item * 10,
-  name: `${item * 10}`,
-}))
-
-const startHours = Array.from(Array(24).keys()).map(item => ({
-  id: item,
-  value: item,
-  name: `${item}`,
-}))
-
 const Component = ({}: IProps) => {
-  const [isOpen, setOpen] = useState(false)
+  const [isEdit, setEdit] = useState(false)
   return (
-    <div
-      style={{ paddingLeft: 'calc(100vw - 100%)' }}
-      className={`${isOpen ? 'bottom-[85%]' : 'bottom-0'} fixed left-0 right-0 flex justify-center transition-all duration-700`}>
-      <div className="relative transition-all duration-700">
-        <h3
-          onClick={() => setOpen(p => !p)}
-          className={`border-b-0 border-2 border-blue-800 select-none bg-blue-600 text-md text-center px-10 py-2 rounded-t-2xl cursor-pointer`}>
-          Customize your TasksTracker
-        </h3>
-        <div
-          className={`${
-            isOpen ? 'top-[15%]' : 'top-[100%] '
-          } overflow-y-scroll overflow-x-hidden border-t-[3px] border-blue-800 fixed bg-gradient-to-r from-blue-600 to-fuchsia-600 bottom-0 left-0 right-0 transition-all duration-700 flex justify-center`}>
-          <article
-            style={{ paddingLeft: 'calc(100vw - 100%)' }}
-            className=" py-12 px-2 grid grid-cols-4 sm:grid-cols-1 mx-auto w-4/5 lg:w-full lg:px-5 relative">
-            <section className="pl-2 flex flex-col gap-5 col-span-3 sm:order-2 items-center justify-between sm:py-5">
-              {/**/}
-              <CustomizeItemWrapper withDivider>
-                <Heading>Select time for each task:</Heading>
-                <Select items={time} placeholder="Select task time" />
-              </CustomizeItemWrapper>
-              {/**/}
-              <CustomizeItemWrapper withDivider>
-                <Heading>Select chill time after each task:</Heading>
-                <Select items={chillTime} placeholder="Select chill task time" />
-              </CustomizeItemWrapper>
-              {/**/}
-              <CustomizeItemWrapper withDivider st={{ gap: '10px' }}>
-                <Heading>Define time of first task's start:</Heading>
-                <Select items={startHours} placeholder="hours" />
-                hours
-                <Select items={startMinutes} placeholder="minutes" />
-                minutes
-              </CustomizeItemWrapper>
-              {/**/}
-              <CustomizeItemWrapper withDivider>
-                <Heading>Select time for each task:</Heading>
-                <Select items={time} placeholder="Select task time" />
-              </CustomizeItemWrapper>
-              <TasksCreator />
-            </section>
-            <section className="min-h-[250px] flex justify-center sm:order-1 mb-10 sm:mb-0">
-              <Stepper />
-            </section>
-          </article>
+    <ExpandingBlockFromBottom>
+      <div className="w-full flex flex-col">
+        <article className="grid grid-cols-2 sm:grid-cols-1 mx-auto w-[70%] gap-10 py-5">
+          <section className="py-10 flex flex-col gap-y-5">
+            <Item isEdit={isEdit} callback={() => setEdit(p => !p)}>
+              Name of the task
+            </Item>
+            <Item isEdit={isEdit} callback={() => setEdit(p => !p)}>
+              Description
+            </Item>
+            <Item isEdit={isEdit} callback={() => setEdit(p => !p)}>
+              Time of each task
+            </Item>
+            <Item isEdit={isEdit} callback={() => setEdit(p => !p)}>
+              Time between tasks
+            </Item>
+            <Item isEdit={isEdit} callback={() => setEdit(p => !p)}>
+              Tasks Configuration
+            </Item>
+          </section>
+        </article>
+        <div className="text-center text-3xl text-white pb-10">
+          <h2 className="bg-green-400 w-1/3 lg:w-2/3 sm:w-[90%] mx-auto py-1 shadow-black-block rounded-xl">Finalization:</h2>
         </div>
       </div>
-    </div>
+    </ExpandingBlockFromBottom>
   )
 }
 
-const CustomizeItemWrapper = ({ children, withDivider, st }: { children: React.ReactNode; withDivider?: boolean; st?: CSSProperties }) => {
+const Item = ({
+  children,
+  callback,
+  isEdit,
+  isTasksConfiguration,
+}: {
+  isTasksConfiguration?: boolean
+  isEdit: boolean
+  children: React.ReactNode
+  callback: () => void
+}) => {
   return (
-    <>
-      <div style={st} className="flex gap-5 h-min sm:flex-col sm:items-center">
-        {children}
-      </div>
-      {withDivider && <Divider />}
-    </>
+    <div
+      onClick={callback}
+      className={`${
+        isTasksConfiguration ? 'bg-violet-400' : 'bg-blue-400'
+      } rounded-xl shadow-black-block  py-4 text-xl text-white  mt-5 px-5 flex w-full justify-center`}>
+      {!isTasksConfiguration ? <Tasks isEdit={isEdit} /> : <Panel order={1} isEdit={isEdit} />}
+      {children}
+    </div>
   )
 }
 

@@ -6,7 +6,7 @@ const Page = () => {
     <div className="w-full px-2">
       <div className="max-w-[1000px] mx-auto py-10 flex flex-col gap-y-7">
         <h2 className="text-4xl self-center shadow-red">Build your Day Tasks</h2>
-        <div>
+        <div className="pb-5">
           <Presets />
         </div>
         <CustomizeTasks />

@@ -8,8 +8,16 @@ body {
     min-height: 100vh;
     color: #f3f3f3;
     overflow-x: hidden;
-    background: linear-gradient(0deg, rgba(255,193,129,1) 0%, rgba(254,249,199,1) 50%, rgba(159,237,215,1) 100%) no-repeat;
     @apply relative;
+}
+
+.gradient-background {
+    background: linear-gradient(0deg, rgba(255,193,129,1) 0%, rgba(254,249,199,1) 50%, rgba(159,237,215,1) 100%);
+
+}
+
+.reversed-gradient-background {
+        background: linear-gradient(0deg, rgba(159,237,215,1) 25%, rgba(254,249,199,1) 75%, rgba(255, 169, 76, 1) 100%) no-repeat;
 }
 
 .shadow-black-block {

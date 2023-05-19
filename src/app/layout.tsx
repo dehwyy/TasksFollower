@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html>
-      <body className={`${BodyFont.className}`}>
+      <body className={`${BodyFont.className} gradient-background min-w-[250px] w-full`}>
         <Providers>
           <Navbar />
           <Page>{children}</Page>
