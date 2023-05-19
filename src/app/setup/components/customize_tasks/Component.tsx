@@ -33,11 +33,11 @@ const startMinutes = Array.from(Array(6).keys()).map(item => ({
 const startHours = Array.from(Array(24).keys()).map(item => ({
   id: item,
   value: item,
-  name: `${item}`
+  name: `${item}`,
 }))
 
 const Component = ({}: IProps) => {
-  const [isOpen, setOpen] = useState(true)
+  const [isOpen, setOpen] = useState(false)
   return (
     <div
       style={{ paddingLeft: 'calc(100vw - 100%)' }}
@@ -67,10 +67,12 @@ const Component = ({}: IProps) => {
                 <Select items={chillTime} placeholder="Select chill task time" />
               </CustomizeItemWrapper>
               {/**/}
-              <CustomizeItemWrapper withDivider st={{gap: "10px"}}>
+              <CustomizeItemWrapper withDivider st={{ gap: '10px' }}>
                 <Heading>Define time of first task's start:</Heading>
-                <Select items={startHours} placeholder="hours" />hours
-                <Select items={startMinutes} placeholder="minutes" />minutes
+                <Select items={startHours} placeholder="hours" />
+                hours
+                <Select items={startMinutes} placeholder="minutes" />
+                minutes
               </CustomizeItemWrapper>
               {/**/}
               <CustomizeItemWrapper withDivider>
@@ -89,10 +91,12 @@ const Component = ({}: IProps) => {
   )
 }
 
-const CustomizeItemWrapper = ({ children, withDivider, st }: { children: React.ReactNode; withDivider?: boolean , st?: CSSProperties}) => {
+const CustomizeItemWrapper = ({ children, withDivider, st }: { children: React.ReactNode; withDivider?: boolean; st?: CSSProperties }) => {
   return (
     <>
-      <div style={st} className="flex gap-5 h-min sm:flex-col sm:items-center">{children}</div>
+      <div style={st} className="flex gap-5 h-min sm:flex-col sm:items-center">
+        {children}
+      </div>
       {withDivider && <Divider />}
     </>
   )

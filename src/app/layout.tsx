@@ -5,21 +5,19 @@ import Page from '@/components/Page'
 import Navbar from '@/components/navbar/Component'
 import { Metadata } from 'next'
 
-const BodyFont = Roboto({ subsets: ["latin"], weight: "700"})
+const BodyFont = Roboto({ subsets: ['latin'], weight: '700' })
 
 export const metadata: Metadata = {
-  viewport: {maximumScale: 1, width: "device-width"}
+  viewport: { maximumScale: 1, width: 'device-width' },
 }
 
-export default function RootLayout({children}: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html>
-      <body className={`${BodyFont.className} min-w-[320px]`}>
+      <body className={`${BodyFont.className}`}>
         <Providers>
           <Navbar />
-          <Page>
-            {children}
-          </Page>
+          <Page>{children}</Page>
         </Providers>
       </body>
     </html>

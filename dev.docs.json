@@ -1,0 +1,13 @@
+{
+  "colors": {
+    "bg": {
+      "lightOrange": "rgba(255,193,129,1)",
+      "pageYellow": "rgba(254,249,199,1)",
+      "paleAquamarine": "rgba(159,237,215,1)"
+    },
+    "text": {
+      "shadowYellow": "rgba(255, 169, 76, 1)",
+      "shadowBlue":  "rgba(29,185,197,1)"
+    }
+  }
+}

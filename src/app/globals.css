@@ -3,13 +3,54 @@
 @tailwind utilities;
 
 
-
 body {
     height: 100%;
-    color: #f4f4f4;
+    min-height: 100vh;
+    color: #f3f3f3;
     overflow-x: hidden;
-    @apply bg-blue-500;
+    background: linear-gradient(0deg, rgba(255,193,129,1) 0%, rgba(254,249,199,1) 50%, rgba(159,237,215,1) 100%) no-repeat;
     @apply relative;
+}
+
+.shadow-black-block {
+    box-shadow: 3px 1px 0 #333333;
+    border: 3px solid #333333;
+}
+
+.shadow-yellow {
+    text-shadow: 1.2px 1.2px 3px rgba(255, 169, 76, 1);
+}
+
+.shadow-blue {
+    text-shadow:  0.5px 0.5px 6px rgba(29,185,197,1);
+}
+/*#ef4444*/
+.shadow-red {
+    text-shadow: 0.5px 0.5px 6px #ff0000;
+}
+
+.shadow-violet {
+    text-shadow: 0.5px 0.5px 2px #8b5cf6;
+}
+
+.shadow-pink {
+    text-shadow: 0.5px 0.5px 2px #ec4899;
+}
+
+.shadow-fuchsia {
+    text-shadow: 0.5px 0.5px 2px #d946ef;
+}
+
+.shadow-dark{
+    text-shadow: 0.5px 0.5px 1px #333333;
+}
+
+.shadow-light{
+    text-shadow: 0.5px 0.5px 1px #9b9b9b;
+}
+
+.shadow-reset {
+    text-shadow: none;
 }
 
 ::-webkit-scrollbar {

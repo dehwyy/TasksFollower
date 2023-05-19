@@ -35,9 +35,9 @@ export interface ITask {
   selected: boolean
 }
 
-export const getConstantTasks: () => ITask[] = () -> [
+export const getConstantTasks: () => ITask[] = () => [
   { id: 1, title: 'Complete math lesson', tags: ['school', 'math'], selected: false },
   { id: 2, title: 'Complete japanese lesson', tags: ['study', 'language', 'japan', 'japanese'], selected: false },
   { id: 3, title: 'Make up room', tags: ['home', 'room', 'gigachad'], selected: false },
-  { id: 4, title: 'To code some time', tags: ['code', 'cpp', 'ts', 'typescript', 'py', 'python', 'js'], selected: false  },
+  { id: 4, title: 'To code some time', tags: ['code', 'cpp', 'ts', 'typescript', 'py', 'python', 'js'], selected: false },
 ]
