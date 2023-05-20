@@ -9,7 +9,8 @@
       "shadowYellow": "rgba(255, 169, 76, 1)",
       "shadowBlue":  "rgba(29,185,197,1)",
       "red400": "#f87171",
-      "blue400": "#60a5fa"
+      "blue400": "#60a5fa",
+      "violet400": "#a78bfa"
     }
   }
 }

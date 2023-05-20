@@ -2,18 +2,22 @@
 import { Input } from '@chakra-ui/input'
 import SelectItem from '@/app/setup/components/customize_tasks/right_panel/SelectItem'
 import ArrowPointer from '@/app/setup/components/customize_tasks/right_panel/ArrowPointer'
+import { useAtom } from 'jotai/index'
+import { TaskConfigurationIdType, TaskSelectedOptions } from '@/utlis/store/tasks/task_configuration'
+import { useMemo } from 'react'
 
 interface IProps {
-  isEdit: boolean
-  order: number
+  itemId: TaskConfigurationIdType
 }
 
-const Panel = ({ isEdit, order }: IProps) => {
+const Panel = ({ itemId }: IProps) => {
+  const [selectedItem] = useAtom(TaskSelectedOptions)
+  const isSelected = useMemo(() => itemId === selectedItem.selected, [selectedItem])
   return (
     <section
       onClick={e => e.stopPropagation()}
-      style={{ top: `${order * 120}px` }}
-      className={`${isEdit ? 'translate-x-0   ' : 'translate-x-full'} absolute left-1/2 right-0 bottom-0 transition-all duration-700`}>
+      style={{ top: `${itemId * 120}px` }}
+      className={`${isSelected ? 'translate-x-0' : 'translate-x-full'} absolute left-1/2 right-0 transition-all duration-700`}>
       <div className="flex flex-col py-10">
         <div className="w-3/5 ml-[10%] relative">
           <div className="overflow-hidden rounded-2xl bg-red-400 shadow-black-block">
@@ -24,7 +28,7 @@ const Panel = ({ isEdit, order }: IProps) => {
               <Input variant="flushed" focusBorderColor="white" className="text-xl shadow-dark" />
             </SelectItem>
           </div>
-          {'isNotTasksSelect' && <ArrowPointer isEdit={isEdit} />}
+          {'isNotTasksSelect' && <ArrowPointer isSelected={isSelected} />}
         </div>
       </div>
     </section>

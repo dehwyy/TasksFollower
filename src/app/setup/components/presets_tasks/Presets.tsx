@@ -2,6 +2,7 @@ import SelectHeading from '@/app/setup/components/SelectHeading'
 import DividerComponent from '@/components/global/Divider'
 import Image from 'next/image'
 import Arrow from '../../../../../public/icons/arrow.svg'
+import TaskInfo from '@/components/global/TaskInfo'
 
 interface IProps {}
 
@@ -52,7 +53,7 @@ const PresentsData: IPreset[] = [
 ]
 const Presets = () => {
   return (
-    <article>
+    <article className="pb-5">
       <SelectHeading>Select one of the following presets</SelectHeading>
       <section className="flex flex-col gap-y-7 pt-5 shadow-light">
         {PresentsData.map(preset => (
@@ -66,45 +67,8 @@ const Presets = () => {
                 <div className="text-forShadowYellow">{preset.difficulty}★</div>
               </div>
             </div>
-            <div
-              style={{ background: 'rgba(255, 255, 255, 1)' }}
-              className="shadow-black-block rounded-lg p-3 col-span-2 lg:col-span-1 flex flex-col items-center">
-              <div className="text-2xl text-red-400 shadow-dark">Plan {preset.name}</div>
-              <div className="text-forShadowBlue underline pb-3">
-                <i>{preset.description}</i>
-              </div>
-              <DividerComponent orientation="horizontal" />
-              <div className="flex flex-col items-center w-full py-3">
-                <div className="text-xl text-red-400 shadow-dark">Time</div>
-                <div className="grid grid-cols-3 sm:grid-cols-1 w-full place-items-center">
-                  <div className="flex flex-col items-center">
-                    <div>Work Time Per Task</div>
-                    <div className="text-forShadowYellow">{preset.time.work}</div>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <div>Rest Time Per Task</div>
-                    <div className="text-forShadowYellow">{preset.time.rest}</div>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <div>Overall</div>
-                    <div className="text-forShadowYellow">{(preset.time.work + preset.time.rest) * preset.tasks.length}</div>
-                  </div>
-                </div>
-              </div>
-              <DividerComponent orientation="horizontal" />
-              <div className="flex flex-col items-center w-full py-3">
-                <div className="text-xl text-red-400 shadow-dark pb-1">Tasks</div>
-                {preset.tasks.map((task, i) => (
-                  <>
-                    <div className="border-forShadowBlue border-2 w-2/3 sm:w-full text-center py-1 rounded-2xl">{task.name}</div>
-                    {preset.tasks.length - i - 1 ? (
-                      <Image width="50px" height="50px" className="w-[50px] h-[50px] mb-1" src={Arrow} alt="arrow" />
-                    ) : (
-                      <></>
-                    )}
-                  </>
-                ))}
-              </div>
+            <div style={{ background: 'rgba(255, 255, 255, 1)' }} className="shadow-black-block rounded-lg p-3 col-span-2 lg:col-span-1">
+              <TaskInfo tasks={preset.tasks} name={preset.name} time={preset.time} difficulty={preset.difficulty} description={preset.description} />
               <DividerComponent orientation="horizontal" />
               <div className="grid gap-x-5 gap-y-3 grid-cols-2 sm:grid-cols-1 w-2/3 sm:w-full pt-3">
                 <div className="text-forShadowYellow border-forShadowYellow border-2 text-center py-1 rounded-2xl">Edit</div>
