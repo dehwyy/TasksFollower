@@ -1,12 +1,13 @@
 'use client'
 import { Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay } from '@chakra-ui/modal'
 import TasksInfo from '@/components/global/TaskInfo'
+import { globalModalWindowsAtom } from '@/utlis/store/globalModal'
+import { useAtom } from 'jotai'
 
-interface IProps {}
-
-const SummaryModalWindow = ({}: IProps) => {
+const SummaryModalWindow = () => {
+  const [{ summaryWindow }, setGlobalModalWindow] = useAtom(globalModalWindowsAtom)
   return (
-    <Modal isOpen={false} onClose={() => {}}>
+    <Modal isOpen={summaryWindow.state} onClose={() => setGlobalModalWindow({ uid: 'summaryWindow', state: false })}>
       <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="5px" />
       <ModalContent className="text-forShadowBlue shadow-black-block rounded-xl w-full max-w-[50%] lg:max-w-[75%] sm:max-w-full">
         <ModalCloseButton color="black" />

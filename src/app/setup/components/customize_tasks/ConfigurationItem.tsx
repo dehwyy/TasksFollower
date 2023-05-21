@@ -13,8 +13,10 @@ interface IProps {
 }
 
 const ConfigurationItem = ({ children, itemId, customBackground }: IProps) => {
-  const [selectedItem, setSelectedItem] = useAtom(TaskSelectedOptions)
-  const onClickHandler = useCallback(() => setSelectedItem(itemId), [])
+  const [_, setSelectedItem] = useAtom(TaskSelectedOptions)
+  const onClickHandler = useCallback(() => {
+    setSelectedItem(itemId)
+  }, [])
   return (
     <div
       onClick={onClickHandler}
