@@ -1,7 +1,6 @@
 import { Input } from '@chakra-ui/input'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { TaskOptionValue } from '@/utlis/store/task/tasks.inputs'
-import { useEffect, useRef } from 'react'
 
 interface IProps {
   uid: TaskUid
@@ -9,12 +8,6 @@ interface IProps {
 
 const SelectItemInput = ({ uid }: IProps) => {
   const [{ value: inputValue }, setInputValue] = useAtom(TaskOptionValue[uid])
-  const inputRef = useRef<HTMLInputElement | null>(null)
-  useEffect(() => {
-    setTimeout(() => {
-      inputRef?.current!.focus()
-    }, 500) // 500 ms seconds is the transition duration
-  }, [uid])
   return (
     <div
       className={`${
@@ -22,7 +15,6 @@ const SelectItemInput = ({ uid }: IProps) => {
       } cursor-pointer select-none text-xl text-white w-full px-10 py-5 text-center  transition-all`}>
       <div>
         <Input
-          ref={inputRef}
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
           variant="flushed"

@@ -7,7 +7,7 @@ import { TaskConfigurationIdType, TasksConfigurationOptions, TaskSelectedOptions
 import { useMemo } from 'react'
 import { useAtomValue } from 'jotai'
 import { TaskOptionData } from '@/utlis/store/task/tasks.config'
-import SelectItemInput from '@/app/setup/components/customize_tasks/SelectItemInput'
+import SelectItemInput from '@/app/setup/components/customize_tasks/right_panel/SelectItemInput'
 
 const Panel = () => {
   const selectedOption = useAtomValue(TaskOptionData.SelectedOption)

@@ -26,3 +26,10 @@ interface ISelectedTaskValue {
   uid: TaskUid
   value: string | number
 }
+
+interface IJob {
+  id: number
+  value: string
+  isSelected: boolean
+  jobTime: null | number // I should add feature that will allow u to customize the job's time ?? IT IS CUSTOM TIME SO IT SHOULD BE NULL!!
+}

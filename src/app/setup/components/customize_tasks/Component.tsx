@@ -3,9 +3,11 @@ import ExpandingBlockFromBottom from '@/app/setup/components/customize_tasks/Exp
 import SummaryButton from '@/app/setup/components/customize_tasks/SummaryButton'
 import SummaryModalWindow from '@/app/setup/components/customize_tasks/SummaryModalWindow'
 import { useAtomValue } from 'jotai'
-import TaskItem from '@/app/setup/components/customize_tasks/TaskItem'
+import TaskOption from '@/app/setup/components/customize_tasks/TaskOption'
 import { TaskOptionData } from '@/utlis/store/task/tasks.config'
 import Panel from '@/app/setup/components/customize_tasks/right_panel/Panel'
+import TaskOptionJobs from '@/app/setup/components/customize_tasks/TaskOptionJobs'
+import SelectJobs from '@/app/setup/components/customize_tasks/right_panel/SelectJobs'
 
 const Component = () => {
   const TaskOptions = useAtomValue(TaskOptionData.StaticData)
@@ -15,15 +17,16 @@ const Component = () => {
         <article className="grid grid-cols-2 sm:grid-cols-1 mx-auto w-[70%] gap-10 py-5">
           <section className="py-10 flex flex-col gap-y-5">
             {TaskOptions.map(option => (
-              <TaskItem key={option.id} optionUid={option.uid}>
+              <TaskOption key={option.id} optionUid={option.uid}>
                 {option.title}
-              </TaskItem>
+              </TaskOption>
             ))}
-            <TaskItem optionUid={'difficulty'}>Tasks Configuration</TaskItem>
+            <TaskOptionJobs>Tasks Configuration</TaskOptionJobs>
             <SummaryButton />
             <SummaryModalWindow />
           </section>
           <Panel />
+          <SelectJobs />
         </article>
       </div>
     </ExpandingBlockFromBottom>

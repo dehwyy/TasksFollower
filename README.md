@@ -1,4 +1,4 @@
-## Jobs Tracker
+## SelectJobs Tracker
 ### Stack: 
 - Next13
 - Tailwind

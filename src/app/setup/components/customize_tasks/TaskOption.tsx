@@ -1,5 +1,5 @@
 'use client'
-import Jobs from '@/app/setup/components/customize_tasks/right_panel/Jobs'
+import SelectJobs from '@/app/setup/components/customize_tasks/right_panel/SelectJobs'
 import Panel from '@/app/setup/components/customize_tasks/right_panel/Panel'
 import { useAtom, useSetAtom } from 'jotai'
 import { TaskConfigurationIdType, TaskSelectedOptions } from '@/utlis/store/task/task_configuration'
@@ -13,7 +13,7 @@ interface IProps {
   customBackground?: string
 }
 
-const TaskItem = ({ children, optionUid, customBackground }: IProps) => {
+const TaskOption = ({ children, optionUid, customBackground }: IProps) => {
   // It's kinda stupid that I can't use "useSetAtom" to interface Atom
   // ( I have to use WritableAtom, but It requires custom Setter that I can but don't want to
   const [_, setSelectedTask] = useAtom(TaskOptionData.SelectedOption)
@@ -29,4 +29,4 @@ const TaskItem = ({ children, optionUid, customBackground }: IProps) => {
   )
 }
 
-export default TaskItem
+export default TaskOption
