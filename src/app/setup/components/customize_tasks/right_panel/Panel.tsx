@@ -7,6 +7,7 @@ import { TaskConfigurationIdType, TasksConfigurationOptions, TaskSelectedOptions
 import { useMemo } from 'react'
 import { useAtomValue } from 'jotai'
 import { TaskOptionData } from '@/utlis/store/task/tasks.config'
+import SelectItemInput from '@/app/setup/components/customize_tasks/SelectItemInput'
 
 const Panel = () => {
   const selectedOption = useAtomValue(TaskOptionData.SelectedOption)
@@ -24,13 +25,7 @@ const Panel = () => {
                 {option.title}
               </SelectItem>
             ))}
-            {/*{currentOption?.hasInput ? (*/}
-            {/*  <SelectItem noBorder={true}>*/}
-            {/*    <Input variant="flushed" focusBorderColor="white" className="text-xl shadow-dark" />*/}
-            {/*  </SelectItem>*/}
-            {/*) : (*/}
-            {/*  <></>*/}
-            {/*)}*/}
+            {currentOption?.hasInput ? <SelectItemInput uid={currentOption.uid} /> : <></>}
           </div>
           <ArrowPointer isOpen={selectedOption.isOpen} hasInput={currentOption?.hasInput} />
         </div>

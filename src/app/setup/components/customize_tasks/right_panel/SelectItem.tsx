@@ -11,13 +11,13 @@ interface IProps {
 }
 
 const SelectItem = ({ children, uid, value, noBorder, styles }: IProps) => {
-  const [selectedOption, setSelectedValue] = useAtom(TaskOptionValue[uid])
+  const [{ value: selectedOptionValue }, setSelectedValue] = useAtom(TaskOptionValue[uid])
   return (
     <div
       style={styles}
       onClick={() => setSelectedValue(value)}
       className={`${!noBorder && 'border-white border-b-[1px]'} ${
-        selectedOption.value === value ? 'bg-green-400 hover:bg-green-500' : 'bg-red-400 hover:bg-red-500'
+        selectedOptionValue === value ? 'bg-green-400 hover:bg-green-500' : 'bg-red-400 hover:bg-red-500'
       } cursor-pointer select-none text-xl text-white w-full px-10 py-5 text-center  transition-all`}>
       <div>{children}</div>
     </div>
