@@ -5,12 +5,12 @@ import { Input } from '@chakra-ui/input'
 import Plus from '../../../../../../public/icons/plus.svg'
 import Image from 'next/image'
 import { useMemo, useState } from 'react'
-import { TaskSelectedOptions } from '@/utlis/store/tasks/task_configuration'
+import { TaskSelectedOptions } from '@/utlis/store/task/task_configuration'
 import { ConfigurationTasksAdder } from '@/utlis/enums/TaskConfiguration'
 
 interface IProps {}
 
-const Tasks = ({}: IProps) => {
+const Jobs = ({}: IProps) => {
   const [selectedItem] = useAtom(TaskSelectedOptions)
   const isSelected = useMemo(() => ConfigurationTasksAdder.itemId === selectedItem.selected, [selectedItem])
   const [isCreatingTask, setIsCreatingTask] = useState(false)
@@ -19,7 +19,7 @@ const Tasks = ({}: IProps) => {
   return (
     <section
       onClick={e => e.stopPropagation()}
-      className={`${isSelected ? 'translate-x-0   ' : 'translate-x-full'} top-[480px] absolute left-1/2 right-0 transition-all duration-700`}>
+      className={`${isSelected ? 'translate-x-0  ' : 'translate-x-full'} top-[480px] absolute left-1/2 right-0 transition-all duration-700`}>
       <div className="flex flex-col py-10">
         <div className="w-3/5 ml-[10%] relative">
           <div className="overflow-hidden rounded-2xl shadow-black-block flex flex-wrap bg-[#333333]">
@@ -74,4 +74,4 @@ const Tasks = ({}: IProps) => {
   )
 }
 
-export default Tasks
+export default Jobs

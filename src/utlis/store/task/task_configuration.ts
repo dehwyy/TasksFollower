@@ -82,7 +82,7 @@ export const TasksConfigurationOptions = atom<ITaskConfigurationOptions[], [{ in
     {
       id: 3,
       type: 'restTime',
-      title: 'Rest time between tasks',
+      title: 'Rest time between task',
       hasInput: false,
       isSelected: false,
       selectedValue: null,
