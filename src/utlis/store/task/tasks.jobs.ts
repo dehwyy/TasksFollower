@@ -10,6 +10,10 @@ type SetterArg =
       action: 'changeState'
       id: number
     }
+  | {
+      action: 'sortArray'
+      regex: string
+    }
 
 class TaskJobsValueClass {
   isCreatingJob: PrimitiveAtom<boolean>
@@ -61,7 +65,7 @@ class TaskJobsValueClass {
           jobTime: null,
         },
       ],
-      (get, set, { action, newJobValue, id }) => {
+      (get, set, { action, newJobValue, id, regex }) => {
         const taskJobs = get(this.TaskJobs)
         if (action === 'create' && newJobValue) {
           const newId = taskJobs.slice(-1)[0].id + 1 // increased the latest element id
@@ -76,8 +80,20 @@ class TaskJobsValueClass {
         } else if (action === 'changeState') {
           const newTaskJobs = taskJobs.map(job => (job.id === id ? { ...job, isSelected: !job.isSelected } : job))
           set(this.TaskJobs, newTaskJobs)
+        } else if (action == 'sortArray') {
+          const previousJobsArray = get(this.TaskJobs)
+          const matchArray = [] as IJob[]
+          const notMatchArray = [] as IJob[]
+          previousJobsArray.forEach(job => {
+            if (job.value.match(new RegExp(regex, 'i'))) {
+              matchArray.push(job)
+            } else {
+              notMatchArray.push(job)
+            }
+          })
+          set(this.TaskJobs, [...matchArray, ...notMatchArray])
         } else {
-          throw new Error('action is not handled!')
+          return
         }
       }
     )

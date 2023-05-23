@@ -17,7 +17,7 @@ class TaskOptionDataClass {
       const { selectedOptionUid: previousSelectedOptionUid, isOpen: previousIsOpen } = get(this.SelectedOption)
       // on every click we should close the potential option-window
       set(this.SelectedOption, { selectedOptionUid: previousSelectedOptionUid, isOpen: false })
-      // disabling another window - jobOption || @something...
+      // disabling another window - jobOption || acts as
       set(TaskJobsValue.isOpenJobsOption, false)
       // if the previous value equals the value from the PotentialArgs (it could be undefined if it has come from tasks.job Store
       if (previousSelectedOptionUid === data?.selectedOptionUid) {

@@ -1,6 +1,7 @@
 'use client'
 import { Input } from '@chakra-ui/input'
 import Plus from '../../../../../../public/icons/plus.svg'
+import Minus from '../../../../../../public/icons/minus.svg'
 import Image from 'next/image'
 import SelectJobItem from '@/app/setup/components/customize_tasks/right_panel/SelectJobItem'
 import { useAtom, useAtomValue } from 'jotai'
@@ -23,6 +24,7 @@ const SelectJobs = ({}: IProps) => {
           <div className="overflow-hidden rounded-2xl shadow-black-block flex flex-wrap bg-[#333333]">
             <SelectJobItemInput>
               <Input
+                onChange={e => editJobs({ action: 'sortArray', regex: e.target.value })}
                 placeholder="Find tasks..."
                 variant="flushed"
                 focusBorderColor="white"
@@ -33,7 +35,7 @@ const SelectJobs = ({}: IProps) => {
               <div className="flex items-center shadow-dark gap-5">
                 <span>Create Task</span>
                 <span onClick={() => setCreatingJob(p => !p)} className="cursor-pointer">
-                  <Image src={Plus} alt="plusIcon" />
+                  <Image src={isCreatingJob ? Minus : Plus} alt="plusIcon" />
                 </span>
               </div>
             </SelectJobItemInput>
