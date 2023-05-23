@@ -14,9 +14,7 @@ interface IProps {
 }
 
 const TaskOption = ({ children, optionUid, customBackground }: IProps) => {
-  // It's kinda stupid that I can't use "useSetAtom" to interface Atom
-  // ( I have to use WritableAtom, but It requires custom Setter that I can but don't want to
-  const [_, setSelectedTask] = useAtom(TaskOptionData.SelectedOption)
+  const setSelectedTask = useSetAtom(TaskOptionData.SelectedOption)
   const onClickHandler = useCallback(() => {
     setSelectedTask({ selectedOptionUid: optionUid, timeout: 500 })
   }, [])

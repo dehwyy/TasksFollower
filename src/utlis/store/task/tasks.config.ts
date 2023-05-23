@@ -1,32 +1,40 @@
 import { atom, PrimitiveAtom, WritableAtom } from 'jotai'
+import { TaskJobsValue } from '@/utlis/store/task/tasks.jobs'
+
+type SetterArg = {
+  selectedOptionUid: TaskUid | null
+  timeout: number
+}
 
 class TaskOptionDataClass {
   localTimeout: NodeJS.Timeout | null = null
   StaticData: PrimitiveAtom<ITaskOption[]>
-  SelectedOption: WritableAtom<TaskOptionSelectedType, [{ selectedOptionUid: TaskUid | null; timeout: number }], void>
+  SelectedOption: WritableAtom<TaskOptionSelectedType, [SetterArg] | [], void>
   constructor() {
-    this.SelectedOption = atom<TaskOptionSelectedType, [{ selectedOptionUid: TaskUid | null; timeout: number }], void>(
-      { selectedOptionUid: null, isOpen: false },
-      async (get, set, data) => {
-        // getting Uid and Timeout in ms from data
-        const { selectedOptionUid, timeout } = data
-        // just shortcut
-        const selectedOption = get(this.SelectedOption)
-        // if selected option is already exists on the screen (prevent re-animation on already visible components)
-        if (selectedOptionUid === selectedOption.selectedOptionUid) return
-        // otherwise hiding the block if it even exists
-        selectedOption.isOpen && set(this.SelectedOption, { ...selectedOption, isOpen: false })
-        // clearing previous timeout if it exists
-        this.localTimeout && clearTimeout(this.localTimeout)
-        // if block exists doing timeout in other case no timeout just microtask (nonsense comparing to timeout ms)
-        this.localTimeout = setTimeout(
-          () => {
-            set(this.SelectedOption, { selectedOptionUid: selectedOptionUid, isOpen: true })
-          },
-          selectedOption.isOpen ? timeout : 0
-        )
+    this.SelectedOption = atom<TaskOptionSelectedType, [SetterArg] | [], void>({ selectedOptionUid: null, isOpen: false }, async (get, set, data) => {
+      this.localTimeout && clearTimeout(this.localTimeout)
+      // getting previous values to prevent link-type issues
+      const { selectedOptionUid: previousSelectedOptionUid, isOpen: previousIsOpen } = get(this.SelectedOption)
+      // on every click we should close the potential option-window
+      set(this.SelectedOption, { selectedOptionUid: previousSelectedOptionUid, isOpen: false })
+      // disabling another window - jobOption || @something...
+      set(TaskJobsValue.isOpenJobsOption, false)
+      // if the previous value equals the value from the PotentialArgs (it could be undefined if it has come from tasks.job Store
+      if (previousSelectedOptionUid === data?.selectedOptionUid) {
+        // just changing the state to opposite state (ex: true => false）and the leaving from the function
+        set(this.SelectedOption, { selectedOptionUid: previousSelectedOptionUid, isOpen: !previousIsOpen })
+        return
+        // if data  is not exists it means that this func was called from the tasks.job store so just leaving the func
+      } else if (!data) {
+        return
       }
-    )
+      // else it means that does exist and the event was called from the component
+      const { selectedOptionUid, timeout } = data
+      // the SelectItem could be either open or close - it doesn't make any sense (NOW!!! soon FIX!!) shouldn't have timeout when already closed
+      this.localTimeout = setTimeout(() => {
+        set(this.SelectedOption, { selectedOptionUid, isOpen: true })
+      }, timeout || 0)
+    })
     this.StaticData = atom<ITaskOption[]>([
       {
         id: 0,
