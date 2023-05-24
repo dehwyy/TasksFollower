@@ -53,6 +53,10 @@ body {
     text-shadow: 0.5px 0.5px 1px #333333;
 }
 
+.shadow-dark-intense {
+    text-shadow: 1px 1px 2px #333333;
+}
+
 .shadow-light{
     text-shadow: 0.5px 0.5px 1px #9b9b9b;
 }

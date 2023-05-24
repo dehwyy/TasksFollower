@@ -30,7 +30,7 @@ const PresentsData: IPreset[] = [
   {
     id: 1,
     name: 'LearnDay №1',
-    description: 'The first and the hardest day in your begging journey',
+    description: 'The first and the hardest day in your beginning journey',
     time: { rest: 10, work: 50 },
     difficulty: 10,
     tasks: [
