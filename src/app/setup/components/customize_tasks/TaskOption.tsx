@@ -10,18 +10,15 @@ import { TaskOptionData } from '@/utlis/store/task/tasks.config'
 interface IProps {
   children: React.ReactNode
   optionUid: TaskUid
-  customBackground?: string
 }
 
-const TaskOption = ({ children, optionUid, customBackground }: IProps) => {
+const TaskOption = ({ children, optionUid }: IProps) => {
   const setSelectedTask = useSetAtom(TaskOptionData.SelectedOption)
   const onClickHandler = useCallback(() => {
     setSelectedTask({ selectedOptionUid: optionUid, timeout: 500 })
   }, [])
   return (
-    <div
-      onClick={onClickHandler}
-      className={`${customBackground || 'bg-blue-400'} rounded-xl shadow-black-block text-xl text-white mt-5 px-5 py-4 flex w-full justify-center`}>
+    <div onClick={onClickHandler} className="block-item-hover text-gray-200 rounded-xl text-xl mt-5 px-5 py-4 flex w-full justify-center">
       {children}
     </div>
   )

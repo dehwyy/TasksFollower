@@ -57,22 +57,20 @@ const Presets = () => {
       <SelectHeading>Select one of the following presets</SelectHeading>
       <section className="flex flex-col gap-y-7 pt-5 shadow-light">
         {PresentsData.map(preset => (
-          <div className="grid grid-cols-3 lg:grid-cols-1 gap-x-10 gap-y-3 text-forShadowBlue ">
+          <div className="grid grid-cols-3 lg:grid-cols-1 gap-x-10 gap-y-3 ">
             <div>
-              <div
-                style={{ background: 'rgba(255, 255, 255, 1)' }}
-                className="shadow-black-block rounded-lg p-3 flex gap-1 items-center justify-center">
+              <div className="block-item-hover rounded-lg p-3 flex gap-1 items-center justify-center">
                 <div>{preset.name}</div>
                 <span className="text-gray-400">{' - '}</span>
                 <div className="text-forShadowYellow">{preset.difficulty}★</div>
               </div>
             </div>
-            <div style={{ background: 'rgba(255, 255, 255, 1)' }} className="shadow-black-block rounded-lg p-3 col-span-2 lg:col-span-1">
+            <div className="block-item rounded-lg p-3 col-span-2 lg:col-span-1">
               <TaskInfo tasks={preset.tasks} name={preset.name} time={preset.time} difficulty={preset.difficulty} description={preset.description} />
               <DividerComponent orientation="horizontal" />
-              <div className="grid gap-x-5 gap-y-3 grid-cols-2 sm:grid-cols-1 w-2/3 sm:w-full pt-3">
-                <div className="text-forShadowYellow border-forShadowYellow border-2 text-center py-1 rounded-2xl">Edit</div>
-                <div className="text-green-500 border-green-500 border-2 text-center py-1 rounded-2xl">Start</div>
+              <div className="grid gap-x-5 gap-y-3 grid-cols-2 sm:grid-cols-1 w-2/3 mx-auto sm:w-full pt-3">
+                <div className="block-item-hover !border-violetBorderLighter text-center py-1 rounded-2xl">Edit</div>
+                <div className="block-item-hover !border-violetBorderLighter text-center py-1 rounded-2xl">Start</div>
               </div>
             </div>
           </div>

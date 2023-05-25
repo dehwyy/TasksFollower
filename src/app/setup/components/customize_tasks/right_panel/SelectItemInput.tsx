@@ -11,10 +11,11 @@ const SelectItemInput = ({ uid }: IProps) => {
   return (
     <div
       className={`${
-        (inputValue as string).length ? 'bg-green-400 hover:bg-green-500' : 'bg-red-400 hover:bg-red-500'
-      } cursor-pointer select-none text-xl text-white w-full px-10 py-5 text-center  transition-all`}>
+        (inputValue as string).length && '!bg-pinkPale hover:!bg-pinkPaleLighter !border-violetBorderPale'
+      } block-item-hover !border-0 !border-b-2 cursor-pointer select-none text-xl text-white w-full px-10 py-5 text-center  transition-all`}>
       <div>
         <Input
+          tabIndex={-1}
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
           variant="flushed"

@@ -6,7 +6,7 @@ const SummaryButton = () => {
   return (
     <div
       onClick={() => setGlobalModalWindow({ uid: 'summaryWindow', state: true })}
-      className="cursor-pointer rounded-xl shadow-black-block bg-white text-forShadowBlue text-2xl py-4  mt-5 px-5 flex w-full justify-center">
+      className="cursor-pointer rounded-xl text-pinkLight border-4 border-violetBorderPale text-2xl py-4 mt-5 px-5 flex w-full justify-center">
       Summary
     </div>
   )

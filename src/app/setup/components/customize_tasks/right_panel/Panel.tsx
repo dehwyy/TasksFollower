@@ -16,10 +16,12 @@ const Panel = () => {
   return (
     <section
       style={{ top: `${currentOption?.id * 105 + 40}px` }}
-      className={`${selectedOption.isOpen ? 'translate-x-0' : 'translate-x-full'} absolute left-1/2 right-0 transition duration-[500ms] ease-in-out`}>
+      className={`${
+        selectedOption.isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+      } absolute left-1/2 right-0 transition duration-[500ms] linear`}>
       <div className="flex flex-col py-10">
         <div className="w-3/5 ml-[10%] relative">
-          <div className="overflow-hidden rounded-2xl bg-[#333333] shadow-black-block">
+          <div className="overflow-hidden rounded-2xl bg-backgroundColorSecond shadow-black-block">
             {currentOption?.values.map((option, index) => (
               <SelectItem key={option.value} value={option.value} uid={currentOption.uid}>
                 {option.title}

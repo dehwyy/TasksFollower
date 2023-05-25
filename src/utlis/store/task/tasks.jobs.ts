@@ -18,7 +18,7 @@ type SetterArg =
 class TaskJobsValueClass {
   isCreatingJob: PrimitiveAtom<boolean>
   newJobValue: PrimitiveAtom<string>
-  isOpenJobsOption: WritableAtom<boolean, [boolean | undefined], void>
+  isOpenJobsOption: WritableAtom<boolean, [boolean | unknown], void>
   TaskJobs: WritableAtom<IJob[], SetterArg[], void>
   constructor() {
     this.isCreatingJob = atom(false)

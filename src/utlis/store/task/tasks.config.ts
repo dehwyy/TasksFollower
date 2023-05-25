@@ -9,9 +9,9 @@ type SetterArg = {
 class TaskOptionDataClass {
   localTimeout: NodeJS.Timeout | null = null
   StaticData: PrimitiveAtom<ITaskOption[]>
-  SelectedOption: WritableAtom<TaskOptionSelectedType, [SetterArg] | [], void>
+  SelectedOption: WritableAtom<TaskOptionSelectedType, [SetterArg?], void>
   constructor() {
-    this.SelectedOption = atom<TaskOptionSelectedType, [SetterArg] | [], void>({ selectedOptionUid: null, isOpen: false }, async (get, set, data) => {
+    this.SelectedOption = atom<TaskOptionSelectedType, [SetterArg?], void>({ selectedOptionUid: null, isOpen: false }, async (get, set, data) => {
       this.localTimeout && clearTimeout(this.localTimeout)
       // getting previous values to prevent link-type issues
       const { selectedOptionUid: previousSelectedOptionUid, isOpen: previousIsOpen } = get(this.SelectedOption)
@@ -31,9 +31,12 @@ class TaskOptionDataClass {
       // else it means that does exist and the event was called from the component
       const { selectedOptionUid, timeout } = data
       // the SelectItem could be either open or close - it doesn't make any sense (NOW!!! soon FIX!!) shouldn't have timeout when already closed
-      this.localTimeout = setTimeout(() => {
-        set(this.SelectedOption, { selectedOptionUid, isOpen: true })
-      }, timeout || 0)
+      this.localTimeout = setTimeout(
+        () => {
+          set(this.SelectedOption, { selectedOptionUid, isOpen: true })
+        },
+        previousSelectedOptionUid === null ? 0 : timeout
+      )
     })
     this.StaticData = atom<ITaskOption[]>([
       {

@@ -9,8 +9,8 @@ const SummaryModalWindow = () => {
   return (
     <Modal isOpen={summaryWindow.state} onClose={() => setGlobalModalWindow({ uid: 'summaryWindow', state: false })}>
       <ModalOverlay bg="none" backdropFilter="auto" backdropBlur="5px" />
-      <ModalContent className="text-forShadowBlue shadow-black-block rounded-xl w-full max-w-[50%] lg:max-w-[75%] sm:max-w-full">
-        <ModalCloseButton color="black" />
+      <ModalContent className="bg-backgroundColor border-pinkLight border-2 rounded-xl w-full max-w-[50%] lg:max-w-[75%] sm:max-w-full">
+        <ModalCloseButton color="backgroundColor" />
         <ModalBody className="py-5">
           <TasksInfo
             tasks={[

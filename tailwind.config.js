@@ -4,8 +4,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        forShadowYellow: 'rgba(255, 169, 76, 1)',
-        forShadowBlue: 'rgba(29,185,197,1)',
+        forShadowYellow: 'rgba(255, 169, 76, 1)', // old
+        forShadowBlue: 'rgba(29,185,197,1)', // old
+        backgroundColor: 'rgb(17, 24, 39)',
+        backgroundColorSecond: 'rgb(77,68,90)',
+        pinkLight: 'rgb(255, 214, 235)',
+        pinkPale: 'rgb(179,125,158)',
+        pinkPaleLighter: 'rgb(216,150,189)',
+        violetPale: 'rgba(255, 187, 221, 0.1)',
+        violetLighter: 'rgba(230,168,199, 0.2)',
+        violetBorderPale: 'rgba(230, 168, 199, 0.1)',
+        violetBorderLighter: 'rgba(230,168,199, 0.5)',
       },
       screens: {
         vsm: { max: '470px' },

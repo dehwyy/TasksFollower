@@ -17,8 +17,8 @@ const SelectItem = ({ children, uid, value, noBorder, styles }: IProps) => {
       style={styles}
       onClick={() => setSelectedValue(value)}
       className={`${!noBorder && 'border-white border-b-[1px]'} ${
-        selectedOptionValue === value ? 'bg-green-400 hover:bg-green-500' : 'bg-red-400 hover:bg-red-500'
-      } cursor-pointer select-none text-xl text-white w-full px-10 py-5 text-center transition-all`}>
+        selectedOptionValue === value && '!bg-pinkPale hover:!bg-pinkPaleLighter !border-violetBorderPale'
+      } block-item-hover !border-0 !border-b-2 cursor-pointer select-none text-xl text-white w-full px-10 py-5 text-center transition-all`}>
       <div>{children}</div>
     </div>
   )

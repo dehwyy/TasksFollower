@@ -21,13 +21,13 @@ interface IProps {
 const TaskInfo = ({ name, description, time, tasks }: IProps) => {
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="text-2xl text-red-400 shadow-dark">Plan "{name}"</div>
-      <div className="text-forShadowBlue underline pb-3">
+      <div className="text-2xl text-pinkLight shadow-dark">Plan "{name}"</div>
+      <div className="text-gray-200 underline pb-3">
         <i>{description}</i>
       </div>
       <DividerComponent orientation="horizontal" />
       <div className="flex flex-col items-center w-full py-3">
-        <div className="text-xl text-red-400 shadow-dark">Time</div>
+        <div className="text-xl text-pinkLight shadow-dark">Time</div>
         <div className="grid grid-cols-3 sm:grid-cols-1 w-full place-items-center">
           <div className="flex flex-col items-center">
             <div>Work Time Per Task</div>
@@ -45,10 +45,10 @@ const TaskInfo = ({ name, description, time, tasks }: IProps) => {
       </div>
       <DividerComponent orientation="horizontal" />
       <div className="flex flex-col items-center w-full py-3">
-        <div className="text-xl text-red-400 shadow-dark pb-1">Tasks</div>
+        <div className="text-xl text-pinkLight pb-2">Tasks</div>
         {tasks.map((task, i) => (
           <>
-            <div className="border-forShadowBlue border-2 w-2/3 sm:w-full text-center py-1 rounded-2xl">{task.name}</div>
+            <div className="block-item w-2/3 sm:w-full text-center py-1 rounded-2xl">{task.name}</div>
             {tasks.length - i - 1 ? <Image width="50px" height="50px" className="w-[50px] h-[50px] mb-1" src={Arrow} alt="arrow" /> : <></>}
           </>
         ))}

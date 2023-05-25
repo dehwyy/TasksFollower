@@ -9,9 +9,7 @@ interface IProps {
 const TaskOptionJobs = ({ children }: IProps) => {
   const toggleSelectedJobsOption = useSetAtom(TaskJobsValue.isOpenJobsOption)
   return (
-    <div
-      onClick={toggleSelectedJobsOption}
-      className={`bg-fuchsia-500 rounded-xl shadow-black-block text-xl text-white mt-5 px-5 py-4 flex w-full justify-center`}>
+    <div onClick={toggleSelectedJobsOption} className={`block-item-hover text-gray-200 rounded-xl text-xl mt-5 px-5 py-4 flex w-full justify-center`}>
       {children}
     </div>
   )

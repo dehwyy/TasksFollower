@@ -22,8 +22,10 @@ class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType> {
         uid: taskUid,
         value: '',
       },
-      (_, set, newValue) => {
-        set(this[taskUid], { uid: taskUid, value: newValue })
+      (get, set, value) => {
+        const previousState = get(this[taskUid]).value
+        set(this[taskUid], { uid: taskUid, value: previousState === value ? '' : value })
+        // empty brackets cuz input show False value as "False" xd
       }
     )
   }

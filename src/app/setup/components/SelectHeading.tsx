@@ -3,7 +3,7 @@ interface IProps {
 }
 
 const SelectHeading = ({ children }: IProps) => {
-  return <h3 className="text-[1.85rem] shadow-dark text-blue-300 text-center">{children}</h3>
+  return <h3 className="text-[1.85rem] text-gray-300 text-center">{children}</h3>
 }
 
 export default SelectHeading

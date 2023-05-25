@@ -16,8 +16,8 @@ const SelectJobItem = ({ value, isSelected, id, noDivider }: IProps) => {
     <div
       onClick={changeJobState}
       className={`${!noDivider && 'border-t-2'} ${
-        isSelected ? 'bg-green-500' : ' bg-[#a78bfa]'
-      } cursor-pointer select-none text-xl text-white w-full px-10 py-5 text-center transition-all `}>
+        isSelected && '!bg-pinkPale hover:!bg-pinkPaleLighter !border-violetBorderPale'
+      } block-item-hover !border-0 !border-b-2 cursor-pointer select-none text-xl text-white w-full px-10 py-5 text-center transition-all `}>
       {value}
     </div>
   )
