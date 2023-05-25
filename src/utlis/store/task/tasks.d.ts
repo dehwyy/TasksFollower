@@ -27,6 +27,10 @@ interface ISelectedTaskValue {
   value: string | number
 }
 
+interface ISelectedTaskValueWithInput extends ISelectedTaskValue {
+  inputValue: string
+}
+
 interface IJob {
   id: number
   value: string

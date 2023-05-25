@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const SelectItemInput = ({ uid }: IProps) => {
-  const [{ value: inputValue }, setInputValue] = useAtom(TaskOptionValue[uid])
+  const [{ inputValue }, setInputValue] = useAtom(TaskOptionValue[uid])
   return (
     <div
       className={`${
@@ -17,7 +17,7 @@ const SelectItemInput = ({ uid }: IProps) => {
         <Input
           tabIndex={-1}
           value={inputValue}
-          onChange={e => setInputValue(e.target.value)}
+          onChange={e => setInputValue({ value: e.target.value, action: 'input' })}
           variant="flushed"
           focusBorderColor="white"
           className="text-xl shadow-dark"

@@ -1,12 +1,7 @@
 import DividerComponent from '@/components/global/Divider'
 import Image from 'next/image'
 import Arrow from '../../../public/icons/arrow.svg'
-
-interface ITask {
-  id: number
-  name: string
-  isDone: boolean
-}
+import { useMemo } from 'react'
 
 interface IProps {
   name: string
@@ -15,13 +10,15 @@ interface IProps {
     rest: number
     work: number
   }
-  tasks: ITask[]
+  jobs: IJob[]
 }
 
-const TaskInfo = ({ name, description, time, tasks }: IProps) => {
+const TaskInfo = ({ name, description, time, jobs }: IProps) => {
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="text-2xl text-pinkLight shadow-dark">Plan "{name}"</div>
+      <div className="text-2xl text-pinkLight shadow-dark">
+        Plan "<span className="underline undeline-2 underline-offset-2">{name}</span>"
+      </div>
       <div className="text-gray-200 underline pb-3">
         <i>{description}</i>
       </div>
@@ -39,19 +36,27 @@ const TaskInfo = ({ name, description, time, tasks }: IProps) => {
           </div>
           <div className="flex flex-col items-center">
             <div>Overall</div>
-            <div className="text-forShadowYellow">{(time.work + time.rest) * tasks.length}</div>
+            <div className="text-forShadowYellow">{(time.work + time.rest) * jobs.length}</div>
           </div>
         </div>
       </div>
       <DividerComponent orientation="horizontal" />
       <div className="flex flex-col items-center w-full py-3">
         <div className="text-xl text-pinkLight pb-2">Tasks</div>
-        {tasks.map((task, i) => (
-          <>
-            <div className="block-item w-2/3 sm:w-full text-center py-1 rounded-2xl">{task.name}</div>
-            {tasks.length - i - 1 ? <Image width="50px" height="50px" className="w-[50px] h-[50px] mb-1" src={Arrow} alt="arrow" /> : <></>}
-          </>
-        ))}
+        {jobs.length ? (
+          jobs.map((job, i) =>
+            job.isSelected ? (
+              <>
+                <div className="block-item w-2/3 sm:w-full text-center py-1 rounded-2xl">{job.value}</div>
+                {jobs.length - i - 1 ? <Image width="50px" height="50px" className="w-[50px] h-[50px] mb-1" src={Arrow} alt="arrow" /> : <></>}
+              </>
+            ) : (
+              <></>
+            )
+          )
+        ) : (
+          <div>No Jobs</div>
+        )}
       </div>
     </div>
   )

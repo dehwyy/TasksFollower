@@ -23,7 +23,7 @@ interface IPreset {
     work: number
   }
   difficulty: TaskDifficulty
-  tasks: ITask[]
+  jobs: IJob[]
 }
 
 const PresentsData: IPreset[] = [
@@ -33,10 +33,10 @@ const PresentsData: IPreset[] = [
     description: 'The first and the hardest day in your beginning journey',
     time: { rest: 10, work: 50 },
     difficulty: 10,
-    tasks: [
-      { id: 1, name: 'Japanese', isDone: false },
-      { id: 2, name: 'Book reading', isDone: false },
-      { id: 3, name: 'C# learning', isDone: false },
+    jobs: [
+      { id: 1, value: 'Japanese', jobTime: 10, isSelected: false },
+      { id: 2, value: 'Book reading', jobTime: 10, isSelected: false },
+      { id: 3, value: 'C# learning', jobTime: 10, isSelected: false },
     ],
   },
   {
@@ -45,9 +45,9 @@ const PresentsData: IPreset[] = [
     description: 'Second day in your adventure of improving',
     time: { rest: 20, work: 70 },
     difficulty: 7,
-    tasks: [
-      { id: 1, name: 'Chemistry', isDone: false },
-      { id: 2, name: 'Coding', isDone: false },
+    jobs: [
+      { id: 1, value: 'Chemistry', jobTime: 10, isSelected: false },
+      { id: 2, value: 'Coding', jobTime: 10, isSelected: false },
     ],
   },
 ]
@@ -66,7 +66,7 @@ const Presets = () => {
               </div>
             </div>
             <div className="block-item rounded-lg p-3 col-span-2 lg:col-span-1">
-              <TaskInfo tasks={preset.tasks} name={preset.name} time={preset.time} difficulty={preset.difficulty} description={preset.description} />
+              <TaskInfo jobs={preset.jobs} name={preset.name} time={preset.time} difficulty={preset.difficulty} description={preset.description} />
               <DividerComponent orientation="horizontal" />
               <div className="grid gap-x-5 gap-y-3 grid-cols-2 sm:grid-cols-1 w-2/3 mx-auto sm:w-full pt-3">
                 <div className="block-item-hover !border-violetBorderLighter text-center py-1 rounded-2xl">Edit</div>

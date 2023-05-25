@@ -2,16 +2,19 @@ import { atom, WritableAtom } from 'jotai'
 
 export type TaskValueAtomType = WritableAtom<ISelectedTaskValue, [string | number], void>
 
-class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType> {
-  title: TaskValueAtomType
-  description: TaskValueAtomType
+type TaskValueAtomWithInputActionType = 'input' | 'select'
+type TaskValueAtomWithInputType = WritableAtom<ISelectedTaskValueWithInput, { value: string; action: TaskValueAtomWithInputActionType }, void>
+
+class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType | TaskValueAtomWithInputType> {
+  title: TaskValueAtomWithInputType
+  description: TaskValueAtomWithInputType
   timeRest: TaskValueAtomType
   timeWork: TaskValueAtomType
   difficulty: TaskValueAtomType
 
   constructor() {
-    this.title = this.AtomOptionValueCreator('title')
-    this.description = this.AtomOptionValueCreator('description')
+    this.title = this.AtomOptionValueCreatorWithInput('title')
+    this.description = this.AtomOptionValueCreatorWithInput('description')
     this.timeWork = this.AtomOptionValueCreator('timeWork')
     this.timeRest = this.AtomOptionValueCreator('timeRest')
     this.difficulty = this.AtomOptionValueCreator('difficulty')
@@ -29,5 +32,23 @@ class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType> {
       }
     )
   }
+  private AtomOptionValueCreatorWithInput(taskUid: TaskUid): TaskValueAtomWithInputType {
+    return atom<ISelectedTaskValueWithInput, [{ value: string; action: TaskValueAtomWithInputActionType }], void>(
+      {
+        uid: taskUid,
+        value: '',
+        inputValue: '',
+      },
+      (get, set, { value, action }) => {
+        if (action === 'input') {
+          set(this[taskUid], { ...get(this[taskUid]), inputValue: value, value: '' })
+        } else if (action === 'select') {
+          set(this[taskUid], { ...get(this[taskUid]), inputValue: '', value })
+        } else {
+          throw new Error('action not handled (AtomOptionValueCreatorWithInput)')
+        }
+      }
+    )
+  }
 }
-export const TaskOptionValue = new TaskOptionValueClass()
+export const TaskOptionValue = new TaskOptionValueClass() as Record<TaskUid, TaskValueAtomWithInputType | TaskValueAtomType>
