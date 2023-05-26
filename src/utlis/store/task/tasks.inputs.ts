@@ -15,15 +15,15 @@ class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType | TaskVa
   constructor() {
     this.title = this.AtomOptionValueCreatorWithInput('title')
     this.description = this.AtomOptionValueCreatorWithInput('description')
-    this.timeWork = this.AtomOptionValueCreator('timeWork')
-    this.timeRest = this.AtomOptionValueCreator('timeRest')
-    this.difficulty = this.AtomOptionValueCreator('difficulty')
+    this.timeWork = this.AtomOptionValueCreator<number>('timeWork', 20)
+    this.timeRest = this.AtomOptionValueCreator<number>('timeRest', 5)
+    this.difficulty = this.AtomOptionValueCreator<number>('difficulty', 5)
   }
-  private AtomOptionValueCreator(taskUid: TaskUid): TaskValueAtomType {
-    return atom<ISelectedTaskValue, [string], void>(
+  private AtomOptionValueCreator<T extends string | number>(taskUid: TaskUid, defaultValue?: T): TaskValueAtomType {
+    return atom<ISelectedTaskValue, [T], void>(
       {
         uid: taskUid,
-        value: '',
+        value: defaultValue || '',
       },
       (get, set, value) => {
         const previousState = get(this[taskUid]).value

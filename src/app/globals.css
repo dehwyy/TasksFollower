@@ -17,7 +17,7 @@ body {
 }
 
 .block-item-hover {
-    @apply select-none bg-violetPale hover:bg-violetLighter border-2 border-violetBorderPale hover:border-violetBorderLighter transition-colors duration-300 cursor-pointer
+    @apply select-none bg-violetPale hover:bg-violetLighter border-2 border-violetBorderPale hover:border-violetBorderLighter transition-all duration-300 cursor-pointer
 }
 
 ::-webkit-scrollbar {

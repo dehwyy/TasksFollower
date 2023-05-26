@@ -11,13 +11,15 @@ interface IProps {
     work: number
   }
   jobs: IJob[]
+  difficulty?: number
 }
 
-const TaskInfo = ({ name, description, time, jobs }: IProps) => {
+const TaskInfo = ({ name, description, time, jobs, difficulty }: IProps) => {
   return (
     <div className="flex flex-col items-center w-full">
       <div className="text-2xl text-pinkLight shadow-dark">
         Plan "<span className="underline undeline-2 underline-offset-2">{name}</span>"
+        {difficulty && <div className="text-forShadowYellow text-center">{difficulty}★</div>}
       </div>
       <div className="text-gray-200 underline pb-3">
         <i>{description}</i>
