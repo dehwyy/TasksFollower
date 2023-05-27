@@ -1,6 +1,6 @@
 import { atom } from 'jotai'
 
-type WindowUid = 'summaryWindow'
+export type WindowUid = 'customizeSummaryWindow' | 'playSummaryWindow'
 
 interface ModalWindow {
   state: boolean
@@ -8,12 +8,20 @@ interface ModalWindow {
 
 export const globalModalWindowsAtom = atom<Record<WindowUid, ModalWindow>, [{ uid: WindowUid; state: boolean }], void>(
   {
-    summaryWindow: {
+    customizeSummaryWindow: {
+      state: false,
+    },
+    playSummaryWindow: {
       state: false,
     },
   },
   (get, set, { uid, state }) => {
-    const window = get(globalModalWindowsAtom)
-    set(globalModalWindowsAtom, { ...window, [uid]: { state } })
+    const newState = {} as Record<WindowUid, ModalWindow>
+    console.log(get(globalModalWindowsAtom))
+    const keys = Object.keys(get(globalModalWindowsAtom)) as WindowUid[]
+    for (const key of keys) {
+      newState[key] = { state: key === uid ? state : false }
+    }
+    set(globalModalWindowsAtom, newState)
   }
 )

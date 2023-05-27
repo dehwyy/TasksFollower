@@ -5,7 +5,7 @@ import { TaskJobsValue } from '@/utlis/store/task/tasks.jobs'
 import { useCallback } from 'react'
 
 const array = []
-type ifArrayType = Pick<typeof array, 'map'>
+type ifArrayType = Pick<typeof array, 'map' | 'filter'>
 interface IAtomValueField extends ifArrayType {
   inputValue: string
   value: string | number
@@ -32,5 +32,8 @@ function useSetValueFromOptionsToPlay(key: TaskPlayKeys) {
   const isJobs = key === 'jobs'
   const atomV = useAtomValue(isJobs ? TaskJobsValue.TaskJobs : TaskOptionValue[key]) as IAtomValueField
   const atomS = useSetAtom(TaskPlayData[key])
-  return () => atomS({ value: (atomV.inputValue?.length && atomV.inputValue) || atomV.value || atomV.map(job => job.value) })
+  return () =>
+    atomS({ value: (atomV.inputValue?.length && atomV.inputValue) || atomV.value || atomV.filter(job => job.isSelected).map(job => job.value) })
 }
+
+// TODO: REWRITE THIS HOOK CUZ IT'S govnocode

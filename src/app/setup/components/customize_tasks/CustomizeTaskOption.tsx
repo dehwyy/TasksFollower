@@ -3,18 +3,19 @@ import { useAtomValue, useSetAtom } from 'jotai'
 import { useCallback } from 'react'
 import { TaskOptionData } from '@/utlis/store/task/tasks.config'
 import { TaskOptionValue } from '@/utlis/store/task/tasks.inputs'
+import { TRANSITION_DELAY } from '@/utlis/enums/global'
 
 interface IProps {
   children: React.ReactNode
   optionUid: TaskUid
 }
 
-const TaskOption = ({ children, optionUid }: IProps) => {
+const CustomizeTaskOption = ({ children, optionUid }: IProps) => {
   const setSelectedTask = useSetAtom(TaskOptionData.SelectedOption)
   // I don't understand why ts solve value of key in type Record<keys, ISelectedTaskValueWithInput || ISelectedTaskValue> as ISelectedTaskValue // bruh.
   const currentTaskSelectedOption = useAtomValue(TaskOptionValue[optionUid]) as ISelectedTaskValueWithInput
   const onClickHandler = useCallback(() => {
-    setSelectedTask({ selectedOptionUid: optionUid, timeout: 500 })
+    setSelectedTask({ selectedOptionUid: optionUid, timeout: TRANSITION_DELAY.DELAY })
   }, [])
   return (
     <div
@@ -27,4 +28,4 @@ const TaskOption = ({ children, optionUid }: IProps) => {
   )
 }
 
-export default TaskOption
+export default CustomizeTaskOption

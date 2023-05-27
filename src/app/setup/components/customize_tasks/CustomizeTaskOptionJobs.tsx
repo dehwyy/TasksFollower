@@ -7,7 +7,7 @@ interface IProps {
   children: React.ReactNode
 }
 
-const TaskOptionJobs = ({ children }: IProps) => {
+const CustomizeTaskOptionJobs = ({ children }: IProps) => {
   const jobs = useAtomValue(TaskJobsValue.TaskJobs)
   const hasAtLeastOneSelectedValue = useMemo(() => {
     for (const job of jobs) {
@@ -27,4 +27,4 @@ const TaskOptionJobs = ({ children }: IProps) => {
   )
 }
 
-export default TaskOptionJobs
+export default CustomizeTaskOptionJobs

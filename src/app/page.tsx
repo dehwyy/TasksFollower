@@ -1,4 +1,4 @@
-import InfoShort from '@/app/components_for_index_page/InfoShort'
+import InfoShort from '@/app/components_for_index_page/Component'
 
 interface IProps {}
 

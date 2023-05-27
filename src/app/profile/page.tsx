@@ -5,7 +5,7 @@ import { Divider } from '@chakra-ui/react'
 
 interface IProps {}
 
-const ExtraboldText = Roboto({ subsets: ['latin'], weight: '900' })
+const extraboldText = Roboto({ subsets: ['latin'], weight: '900' })
 
 const layouts = [
   {
@@ -34,7 +34,7 @@ const Page = ({}: IProps) => {
     <div className="max-w-[1000px] mx-auto py-12 flex flex-col w-full gap-5">
       <section>
         <h2 className="text-3xl text-gray-200 text-center">
-          Signed as <span className={`${ExtraboldText.className} text-white underline-offset-4 underline decoration-2`}>{nickname}</span>
+          Signed as <span className={`${extraboldText.className} text-white underline-offset-4 underline decoration-2`}>{nickname}</span>
         </h2>
       </section>
       <section className="w-full relative">
