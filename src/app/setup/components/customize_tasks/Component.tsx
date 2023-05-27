@@ -1,7 +1,7 @@
 'use client'
 import ExpandingBlockFromBottom from '@/app/setup/components/customize_tasks/ExpandingBlockFromBottom'
 import SummaryButton from '@/app/setup/components/customize_tasks/SummaryButton'
-import SummaryModalWindow from '@/app/setup/components/customize_tasks/SummaryModalWindow'
+import SummaryModalWindowCustomize from '@/app/setup/components/customize_tasks/SummaryModalWindowCustomize'
 import { useAtomValue } from 'jotai'
 import TaskOption from '@/app/setup/components/customize_tasks/TaskOption'
 import { TaskOptionData } from '@/utlis/store/task/tasks.config'
@@ -23,7 +23,7 @@ const Component = () => {
             ))}
             <TaskOptionJobs>Tasks Configuration</TaskOptionJobs>
             <SummaryButton />
-            <SummaryModalWindow />
+            <SummaryModalWindowCustomize />
           </section>
           <Panel />
           <SelectJobs />

@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const ExpandingBlockFromBottom = ({ children }: IProps) => {
-  const [isOpen, setOpen] = useState(true)
+  const [isOpen, setOpen] = useState(false)
   return (
     <div
       style={{ paddingLeft: 'calc(100vw - 100%)' }}

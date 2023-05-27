@@ -1,10 +1,10 @@
 import { useAtom } from 'jotai/index'
 import { globalModalWindowsAtom } from '@/utlis/store/globalModal'
-import isAbleToWatchSummaryModal from '@/utlis/hooks/customize_hooks/isAbleToWatchSummaryModal'
+import useIsAbleToWatchSummaryModal from '@/utlis/hooks/customize_hooks/useIsAbleToWatchSummaryModal'
 
 const SummaryButton = () => {
   const [_, setGlobalModalWindow] = useAtom(globalModalWindowsAtom)
-  const { isAbleToWatch } = isAbleToWatchSummaryModal()
+  const { isAbleToWatch } = useIsAbleToWatchSummaryModal()
   return (
     <div
       onClick={() => setGlobalModalWindow({ uid: 'summaryWindow', state: true })}

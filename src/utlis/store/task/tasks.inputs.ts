@@ -19,7 +19,7 @@ class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType | TaskVa
     this.timeRest = this.AtomOptionValueCreator<number>('timeRest', 5)
     this.difficulty = this.AtomOptionValueCreator<number>('difficulty', 5)
   }
-  private AtomOptionValueCreator<T extends string | number>(taskUid: TaskUid, defaultValue?: T): TaskValueAtomType {
+  private AtomOptionValueCreator<T extends string | number = string>(taskUid: TaskUid, defaultValue?: T): TaskValueAtomType {
     return atom<ISelectedTaskValue, [T], void>(
       {
         uid: taskUid,

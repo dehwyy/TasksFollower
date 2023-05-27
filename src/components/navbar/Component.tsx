@@ -10,7 +10,7 @@ const Navbar = ({}: IProps) => {
           <BasicNavItem link="/setup">Setup Tasks</BasicNavItem>
           <Link href="/">
             <div className="sm:px-5 px-10 sm:pb-0 pb-2 sm:block flex items-center justify-center -ml-1.5 text-2xl cursor-pointer hover:text-orange-100 transition-all">
-              Start Tasks
+              UseTask
             </div>
           </Link>
           <BasicNavItem link="/profile">View Profile</BasicNavItem>

@@ -1,7 +1,6 @@
 import DividerComponent from '@/components/global/Divider'
 import Image from 'next/image'
 import Arrow from '../../../public/icons/arrow.svg'
-import { useMemo } from 'react'
 
 interface IProps {
   name: string

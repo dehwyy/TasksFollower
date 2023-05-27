@@ -47,11 +47,11 @@ class TaskOptionDataClass {
         values: [
           {
             title: 'Training task',
-            value: 'training',
+            value: 'Training task',
           },
           {
             title: 'Monk mode task',
-            value: 'monk',
+            value: 'Monk mode task',
           },
         ],
       },
