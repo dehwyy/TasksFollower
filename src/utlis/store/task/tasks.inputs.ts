@@ -1,16 +1,20 @@
 import { atom, WritableAtom } from 'jotai'
 
-export type TaskValueAtomType = WritableAtom<ISelectedTaskValue, [string | number], void>
+// possible TaskWithInputAtom actions
+type TaskValueAtomInputActionType = 'input' | 'select'
+// args for the TaskWithInputAtom
+type TaskValueAtomInputArgs = { value: string; action: TaskValueAtomInputActionType }
+// args for both TaskWithInput and withoutInput
+type TaskValueArgs = number | string | TaskValueAtomInputArgs
+// AtomType for both
+type TaskValueAtomType<T extends TaskValueArgs> = WritableAtom<ISelectedTaskValue, T, void>
 
-type TaskValueAtomWithInputActionType = 'input' | 'select'
-type TaskValueAtomWithInputType = WritableAtom<ISelectedTaskValueWithInput, { value: string; action: TaskValueAtomWithInputActionType }, void>
-
-class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType | TaskValueAtomWithInputType> {
-  title: TaskValueAtomWithInputType
-  description: TaskValueAtomWithInputType
-  timeRest: TaskValueAtomType
-  timeWork: TaskValueAtomType
-  difficulty: TaskValueAtomType
+class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType<TaskValueArgs>> {
+  title: TaskValueAtomType<TaskValueAtomInputArgs>
+  description: TaskValueAtomType<TaskValueAtomInputArgs>
+  timeRest: TaskValueAtomType<number>
+  timeWork: TaskValueAtomType<number>
+  difficulty: TaskValueAtomType<number>
 
   constructor() {
     this.title = this.AtomOptionValueCreatorWithInput('title')
@@ -19,7 +23,7 @@ class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType | TaskVa
     this.timeRest = this.AtomOptionValueCreator<number>('timeRest', 5)
     this.difficulty = this.AtomOptionValueCreator<number>('difficulty', 5)
   }
-  private AtomOptionValueCreator<T extends string | number = string>(taskUid: TaskUid, defaultValue?: T): TaskValueAtomType {
+  private AtomOptionValueCreator<T extends string | number = string>(taskUid: TaskUid, defaultValue?: T): TaskValueAtomType<T> {
     return atom<ISelectedTaskValue, [T], void>(
       {
         uid: taskUid,
@@ -32,8 +36,8 @@ class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType | TaskVa
       }
     )
   }
-  private AtomOptionValueCreatorWithInput(taskUid: TaskUid): TaskValueAtomWithInputType {
-    return atom<ISelectedTaskValueWithInput, [{ value: string; action: TaskValueAtomWithInputActionType }], void>(
+  private AtomOptionValueCreatorWithInput(taskUid: TaskUid): TaskValueAtomType<TaskValueAtomInputArgs> {
+    return atom<ISelectedTaskValue, [TaskValueAtomInputArgs], void>(
       {
         uid: taskUid,
         value: '',
@@ -45,10 +49,9 @@ class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType | TaskVa
         } else if (action === 'select') {
           set(this[taskUid], { ...get(this[taskUid]), inputValue: '', value })
         } else {
-          throw new Error('action not handled (AtomOptionValueCreatorWithInput)')
         }
       }
     )
   }
 }
-export const TaskOptionValue = new TaskOptionValueClass() as Record<TaskUid, TaskValueAtomWithInputType | TaskValueAtomType>
+export const TaskOptionValue = new TaskOptionValueClass()

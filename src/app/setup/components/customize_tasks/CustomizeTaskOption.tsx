@@ -12,8 +12,7 @@ interface IProps {
 
 const CustomizeTaskOption = ({ children, optionUid }: IProps) => {
   const setSelectedTask = useSetAtom(TaskOptionData.SelectedOption)
-  // I don't understand why ts solve value of key in type Record<keys, ISelectedTaskValueWithInput || ISelectedTaskValue> as ISelectedTaskValue // bruh.
-  const currentTaskSelectedOption = useAtomValue(TaskOptionValue[optionUid]) as ISelectedTaskValueWithInput
+  const currentTaskSelectedOption = useAtomValue(TaskOptionValue[optionUid])
   const onClickHandler = useCallback(() => {
     setSelectedTask({ selectedOptionUid: optionUid, timeout: TRANSITION_DELAY.DELAY })
   }, [])
@@ -21,7 +20,7 @@ const CustomizeTaskOption = ({ children, optionUid }: IProps) => {
     <div
       onClick={onClickHandler}
       className={`${
-        currentTaskSelectedOption.value || currentTaskSelectedOption!.inputValue ? 'shadow-green-400' : 'shadow-red-400'
+        currentTaskSelectedOption.value || currentTaskSelectedOption.inputValue ? 'shadow-green-400' : 'shadow-red-400'
       } shadow-unselectedSelected block-item-hover text-gray-200 rounded-xl text-xl mt-5 px-5 py-4 flex w-full justify-center transition-all`}>
       {children}
     </div>

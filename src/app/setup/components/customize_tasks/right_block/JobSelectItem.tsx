@@ -9,7 +9,7 @@ interface IProps {
   noDivider?: boolean
 }
 
-const SelectJobItem = ({ value, isSelected, id, noDivider }: IProps) => {
+const JobSelectItem = ({ value, isSelected, id, noDivider }: IProps) => {
   const taskJobEdit = useSetAtom(TaskJobsValue.TaskJobs)
   const changeJobState = useCallback(() => taskJobEdit({ id, action: 'changeState' }), [])
   return (
@@ -23,4 +23,4 @@ const SelectJobItem = ({ value, isSelected, id, noDivider }: IProps) => {
   )
 }
 
-export default SelectJobItem
+export default JobSelectItem

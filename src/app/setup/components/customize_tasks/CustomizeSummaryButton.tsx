@@ -1,6 +1,6 @@
 'use client'
 import { globalModalWindowsAtom } from '@/utlis/store/globalModal'
-import useIsValidCustomizeSummaryWindowAndGetValues from '@/utlis/hooks/customize_hooks/useIsAbleToWatchSummaryModal'
+import useIsValidCustomizeSummaryWindowAndGetValues from '@/utlis/hooks/customize_hooks/useIsValidCustomizeSummaryWindowAndGetValues'
 import { useSetAtom } from 'jotai'
 import { useCallback } from 'react'
 

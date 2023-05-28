@@ -22,13 +22,10 @@ interface TaskOptionSelectedType {
   isOpen: boolean
 }
 
-interface ISelectedTaskValue {
+interface ISelectedTaskValue<T extends string | number = string> {
   uid: TaskUid
-  value: string | number
-}
-
-interface ISelectedTaskValueWithInput extends ISelectedTaskValue {
-  inputValue: string
+  value: T
+  inputValue?: string
 }
 
 interface IJob {

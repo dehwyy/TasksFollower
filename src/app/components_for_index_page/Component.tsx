@@ -1,4 +1,3 @@
-import ModalWindow from '@/components/global/ModalWindow'
 import TaskInfoModalWindowContent from '@/app/components_for_index_page/TaskInfoModalWindowContent'
 import InfoShortWrapper from '@/app/components_for_index_page/InfoShortWrapper'
 import InfoShortHeading from '@/app/components_for_index_page/InfoShortHeading'

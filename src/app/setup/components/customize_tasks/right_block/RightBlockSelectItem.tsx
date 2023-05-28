@@ -1,22 +1,20 @@
 'use client'
-import { CSSProperties, memo, useCallback, useMemo } from 'react'
+import { memo } from 'react'
 import { TaskOptionValue } from '@/utlis/store/task/tasks.inputs'
 import { useAtom } from 'jotai'
+
 interface IProps {
   children: React.ReactNode
   uid: TaskUid
   value: number | string
-  styles?: CSSProperties
-  noBorder?: boolean
 }
 
-const SelectItem = ({ children, uid, value, noBorder, styles }: IProps) => {
+const RightBlockSelectItem = ({ children, uid, value }: IProps) => {
   const [{ value: selectedOptionValue, inputValue }, setSelectedValue] = useAtom(TaskOptionValue[uid])
   return (
     <div
-      style={styles}
       onClick={() => setSelectedValue(inputValue !== undefined ? { value, action: 'select' } : value)}
-      className={`${!noBorder && 'border-white border-b-[1px]'} ${
+      className={`${
         selectedOptionValue === value && '!bg-pinkPale hover:!bg-pinkPaleLighter !border-violetBorderPale'
       } block-item-hover !border-0 !border-b-2 cursor-pointer select-none text-xl text-white w-full px-10 py-5 text-center transition-all`}>
       <div>{children}</div>
@@ -24,4 +22,4 @@ const SelectItem = ({ children, uid, value, noBorder, styles }: IProps) => {
   )
 }
 
-export default memo(SelectItem)
+export default memo(RightBlockSelectItem)

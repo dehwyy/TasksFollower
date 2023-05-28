@@ -1,8 +1,8 @@
 import ExpandingBlockFromBottom from '@/app/setup/components/customize_tasks/expanding_block/Component'
 import CustomizeSummaryButton from '@/app/setup/components/customize_tasks/CustomizeSummaryButton'
-import Panel from '@/app/setup/components/customize_tasks/right_panel/Panel'
+import RightBlock from '@/app/setup/components/customize_tasks/right_block/RightBlockComponent'
 import CustomizeTaskOptionJobs from '@/app/setup/components/customize_tasks/CustomizeTaskOptionJobs'
-import SelectJobs from '@/app/setup/components/customize_tasks/right_panel/SelectJobs'
+import RightBlockJobs from '@/app/setup/components/customize_tasks/right_block/JobComponent'
 import CustomizeTaskOptions from '@/app/setup/components/customize_tasks/CustomizeTaskOptions'
 import CustomizeLeftColumn from '@/app/setup/components/customize_tasks/CustomizeLeftColumn'
 import CustomizeContentWrapper from '@/app/setup/components/customize_tasks/CustomizeContentWrapper'
@@ -19,8 +19,8 @@ const Component = () => {
             <CustomizeSummaryButton />
           </CustomizeLeftColumn>
           <>
-            <Panel />
-            <SelectJobs />
+            <RightBlock />
+            <RightBlockJobs />
           </>
         </CustomizeContentWrapper>
       </ExpandingBlockFromBottom>

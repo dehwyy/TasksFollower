@@ -1,12 +1,12 @@
 import { Input } from '@chakra-ui/input'
-import { useAtom, useAtomValue } from 'jotai'
+import { useAtom } from 'jotai'
 import { TaskOptionValue } from '@/utlis/store/task/tasks.inputs'
 
 interface IProps {
   uid: TaskUid
 }
 
-const SelectItemInput = ({ uid }: IProps) => {
+const RightBlockSelectItemInput = ({ uid }: IProps) => {
   const [{ inputValue }, setInputValue] = useAtom(TaskOptionValue[uid])
   return (
     <div
@@ -27,4 +27,4 @@ const SelectItemInput = ({ uid }: IProps) => {
   )
 }
 
-export default SelectItemInput
+export default RightBlockSelectItemInput

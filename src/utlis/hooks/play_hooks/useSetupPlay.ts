@@ -2,38 +2,32 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { TaskPlayData, TaskPlayKeys } from '@/utlis/store/task/task.play'
 import { TaskOptionValue } from '@/utlis/store/task/tasks.inputs'
 import { TaskJobsValue } from '@/utlis/store/task/tasks.jobs'
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 
-const array = []
-type ifArrayType = Pick<typeof array, 'map' | 'filter'>
-interface IAtomValueField extends ifArrayType {
-  inputValue: string
-  value: string | number
-}
-// Worst code I've ever seen
 export default function useSetupPlay() {
-  const title = useSetValueFromOptionsToPlay('title')
-  const description = useSetValueFromOptionsToPlay('description')
-  const timeWord = useSetValueFromOptionsToPlay('timeWork')
-  const timeRest = useSetValueFromOptionsToPlay('timeRest')
-  const difficulty = useSetValueFromOptionsToPlay('difficulty')
-  const jobs = useSetValueFromOptionsToPlay('jobs')
+  const title = useSetValueFromOptionsToPlayExcludeJobs('title')
+  const description = useSetValueFromOptionsToPlayExcludeJobs('description')
+  const timeWord = useSetValueFromOptionsToPlayExcludeJobs('timeWork')
+  const timeRest = useSetValueFromOptionsToPlayExcludeJobs('timeRest')
+  const difficulty = useSetValueFromOptionsToPlayExcludeJobs('difficulty')
+  const jobs = useSetValueForJobs()
   return useCallback(() => {
-    title()
-    description()
-    timeWord()
-    timeRest()
-    difficulty()
-    jobs()
+    const callbacks = [title, description, timeWord, timeRest, difficulty, jobs]
+    callbacks.forEach(c => c())
   }, [title, description, timeWord, timeRest, difficulty, jobs])
 }
 
-function useSetValueFromOptionsToPlay(key: TaskPlayKeys) {
-  const isJobs = key === 'jobs'
-  const atomV = useAtomValue(isJobs ? TaskJobsValue.TaskJobs : TaskOptionValue[key]) as IAtomValueField
+function useSetValueFromOptionsToPlayExcludeJobs(key: Exclude<TaskPlayKeys, 'jobs'>) {
+  const atomV = useAtomValue(TaskOptionValue[key])
   const atomS = useSetAtom(TaskPlayData[key])
-  return () =>
-    atomS({ value: (atomV.inputValue?.length && atomV.inputValue) || atomV.value || atomV.filter(job => job.isSelected).map(job => job.value) })
+  const value = useMemo(() => {
+    return (atomV.inputValue?.length && atomV.inputValue) || atomV.value
+  }, [atomV?.inputValue, atomV.value])
+  return () => atomS({ value })
 }
-
-// TODO: REWRITE THIS HOOK CUZ IT'S govnocode
+// for JOBS only
+function useSetValueForJobs() {
+  const atomV = useAtomValue(TaskJobsValue.TaskJobs)
+  const atomS = useSetAtom(TaskPlayData.jobs)
+  return () => atomS({ value: atomV.filter(job => job.isSelected).map(job => job.value) })
+}

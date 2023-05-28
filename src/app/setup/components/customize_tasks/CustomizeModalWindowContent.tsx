@@ -1,9 +1,10 @@
 'use client'
 import SummaryModalWindow from '@/components/global/ModalWindow'
-import useIsValidCustomizeSummaryWindowAndGetValues from '@/utlis/hooks/customize_hooks/useIsAbleToWatchSummaryModal'
+import useIsValidCustomizeSummaryWindowAndGetValues from '@/utlis/hooks/customize_hooks/useIsValidCustomizeSummaryWindowAndGetValues'
 import TaskInfo from '@/components/global/task_info/Component'
 import { useMemo } from 'react'
 import useSetupPlay from '@/utlis/hooks/play_hooks/useSetupPlay'
+import DividerComponent from '@/components/global/Divider'
 
 const CustomizeModalWindowContent = () => {
   const setupPlay = useSetupPlay()
@@ -14,7 +15,8 @@ const CustomizeModalWindowContent = () => {
   return (
     <SummaryModalWindow uid="customizeSummaryWindow" deps={[]}>
       <TaskInfo {...props} jobs={jobsOnlyValues} />
-      <div className="w-full" onClick={setupPlay}>
+      <DividerComponent orientation="horizontal" />
+      <div className="w-full pt-5" onClick={setupPlay}>
         <button className="block w-1/3 mx-auto py-2 rounded-xl block-item-hover">Play</button>
       </div>
     </SummaryModalWindow>
