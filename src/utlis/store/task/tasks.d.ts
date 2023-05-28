@@ -1,6 +1,5 @@
 type TaskUid = 'title' | 'description' | 'timeWork' | 'timeRest' | 'difficulty'
 type JobUid = 'jobs'
-type DifficultyType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
 
 interface ITaskOptionItem {
   title: string

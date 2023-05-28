@@ -1,4 +1,4 @@
-import { Atom, atom, PrimitiveAtom, WritableAtom } from 'jotai'
+import { atom, PrimitiveAtom, WritableAtom } from 'jotai'
 import { TaskOptionData } from '@/utlis/store/task/tasks.config'
 
 type SetterArg =

@@ -1,14 +1,14 @@
 import { WritableAtom } from 'jotai/index'
 import { atom } from 'jotai'
 
-type JobsType = 'jobs'
-export type TaskPlayKeys = JobsType | TaskUid
+export type TaskPlayKeys = JobUid | TaskUid
 type TaskPlayValueT = string | number | string[]
 
 type TaskPlayArgsType = {
   uid: TaskPlayKeys
   value: TaskPlayValueT
 }
+
 type TaskPlayWriteArgsType = { value: TaskPlayValueT }
 
 type TaskPlayAtom = WritableAtom<TaskPlayArgsType, [TaskPlayWriteArgsType], void>

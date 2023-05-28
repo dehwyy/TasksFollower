@@ -3,9 +3,7 @@ import CustomizeTaskOption from '@/app/setup/components/customize_tasks/Customiz
 import { useAtomValue } from 'jotai'
 import { TaskOptionData } from '@/utlis/store/task/tasks.config'
 
-interface IProps {}
-
-const CustomizeTaskOptions = ({}: IProps) => {
+const CustomizeTaskOptions = () => {
   const TaskOptions = useAtomValue(TaskOptionData.StaticData)
   return (
     <>

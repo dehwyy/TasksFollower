@@ -1,4 +1,4 @@
-import { useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { useAtomValue, useSetAtom } from 'jotai'
 import { TaskPlayData, TaskPlayKeys } from '@/utlis/store/task/task.play'
 import { TaskOptionValue } from '@/utlis/store/task/tasks.inputs'
 import { TaskJobsValue } from '@/utlis/store/task/tasks.jobs'
