@@ -7,15 +7,13 @@ import PresetsWrapper from '@/app/setup/components/presets_tasks/PresetsWrapper'
 import PresetInfoWrapper from '@/app/setup/components/presets_tasks/PresetInfoWrapper'
 import PresetSingleWrapper from '@/app/setup/components/presets_tasks/PresetSingleWrapper'
 
-type TaskDifficulty = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
-
 interface IPreset {
   id: number
   title: string
   description: string
   timeWork: number
   timeRest: number
-  difficulty: TaskDifficulty
+  difficulty: number
   jobs: IJob[]
 }
 const PresentsData: IPreset[] = [

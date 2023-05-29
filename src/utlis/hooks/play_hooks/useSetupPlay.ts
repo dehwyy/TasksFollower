@@ -4,9 +4,11 @@ import { TaskOptionValue } from '@/utlis/store/task/tasks.inputs'
 import { TaskJobsValue } from '@/utlis/store/task/tasks.jobs'
 import { useCallback, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
+import { TaskOptionData } from '@/utlis/store/task/tasks.config'
 
 export default function useSetupPlay() {
   const router = useRouter()
+  const closeOption = useSetAtom(TaskOptionData.SelectedOption)
   const title = useSetValueFromOptionsToPlayExcludeJobs('title')
   const description = useSetValueFromOptionsToPlayExcludeJobs('description')
   const timeWord = useSetValueFromOptionsToPlayExcludeJobs('timeWork')
@@ -16,6 +18,7 @@ export default function useSetupPlay() {
   return useCallback(() => {
     const callbacks = [title, description, timeWord, timeRest, difficulty, jobs]
     callbacks.forEach(c => c())
+    closeOption()
     router.push('/')
   }, [title, description, timeWord, timeRest, difficulty, jobs])
 }

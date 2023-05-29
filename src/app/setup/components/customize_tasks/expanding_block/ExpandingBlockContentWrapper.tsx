@@ -1,9 +1,13 @@
+'use client'
+import { useAtomValue } from 'jotai'
+import { globalCustomizeTaskIsOpen } from '@/utlis/store/global.store'
+
 interface IProps {
   children: React.ReactNode
-  isOpen: boolean
 }
 
-const ExpandingBlockContentWrapper = ({ children, isOpen }: IProps) => {
+const ExpandingBlockContentWrapper = ({ children }: IProps) => {
+  const isOpen = useAtomValue(globalCustomizeTaskIsOpen)
   return (
     <div
       className={`${

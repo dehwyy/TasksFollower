@@ -1,9 +1,13 @@
+'use client'
+import { useAtomValue } from 'jotai'
+import { globalCustomizeTaskIsOpen } from '@/utlis/store/global.store'
+
 interface IProps {
   children: React.ReactNode
-  isOpen: boolean
 }
 
-const ExpandingBlockWrapper = ({ children, isOpen }: IProps) => {
+const ExpandingBlockWrapper = ({ children }: IProps) => {
+  const isOpen = useAtomValue(globalCustomizeTaskIsOpen)
   return (
     <div
       style={{ paddingLeft: 'calc(100vw - 100%)' }}
