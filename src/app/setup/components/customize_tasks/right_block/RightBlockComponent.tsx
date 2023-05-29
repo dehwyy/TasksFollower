@@ -15,12 +15,11 @@ const RightBlockComponent = () => {
     () => AllOptions.find(option => option.uid === selectedOption.selectedOptionUid),
     [selectedOption.selectedOptionUid]
   )
-  if (!currentOptionData) return <></>
-  const { id, uid, values, hasInput } = currentOptionData
+  const { id, uid, values, hasInput } = currentOptionData || { id: null }
   return (
     <RightBlockWrapper optionId={id} isOpen={selectedOption.isOpen}>
       <RightBlockContentWrapper>
-        {values.map(option => (
+        {values?.map(option => (
           <RightBlockSelectItem key={option.value} value={option.value} uid={uid}>
             {option.title}
           </RightBlockSelectItem>

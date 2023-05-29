@@ -8,8 +8,8 @@ const CustomizeSummaryButton = () => {
   const setGlobalModalWindow = useSetAtom(globalModalWindowsAtom)
   const { isValid } = useIsValidCustomizeSummaryWindowAndGetValues()
   const clickHandler = useCallback(() => {
-    setGlobalModalWindow({ uid: 'customizeSummaryWindow', state: true })
-  }, [])
+    isValid && setGlobalModalWindow({ uid: 'customizeSummaryWindow', state: true })
+  }, [isValid])
   return (
     <div
       onClick={clickHandler}

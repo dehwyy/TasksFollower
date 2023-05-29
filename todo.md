@@ -1,1 +1,0 @@
-FIX: Find jobs when sorting new job(created job) stacking a lot (like increase for no reason)

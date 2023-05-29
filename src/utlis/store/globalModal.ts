@@ -17,7 +17,6 @@ export const globalModalWindowsAtom = atom<Record<WindowUid, ModalWindow>, [{ ui
   },
   (get, set, { uid, state }) => {
     const newState = {} as Record<WindowUid, ModalWindow>
-    console.log(get(globalModalWindowsAtom))
     const keys = Object.keys(get(globalModalWindowsAtom)) as WindowUid[]
     for (const key of keys) {
       newState[key] = { state: key === uid ? state : false }

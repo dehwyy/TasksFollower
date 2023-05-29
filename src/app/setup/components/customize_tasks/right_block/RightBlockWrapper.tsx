@@ -1,10 +1,10 @@
 interface IProps {
   children: React.ReactNode
-  optionId: number
+  optionId: number | null
   isOpen: boolean
 }
 
-const RightBlockWrapper = ({ children, optionId = 0, isOpen }: IProps) => {
+const RightBlockWrapper = ({ children, optionId, isOpen }: IProps) => {
   return (
     <section
       style={{ top: `${optionId * 105 + 40}px` }}

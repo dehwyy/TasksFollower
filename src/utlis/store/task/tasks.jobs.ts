@@ -68,7 +68,7 @@ class TaskJobsValueClass {
       (get, set, { action, newJobValue, id, regex }) => {
         const taskJobs = get(this.TaskJobs)
         if (action === 'create' && newJobValue) {
-          const newId = taskJobs.slice(-1)[0].id + 1 // increased the latest element id
+          const newId = taskJobs.length + 1 // increased the latest element id
           const newAtomItem: IJob = {
             id: newId,
             jobTime: null, // it stays for custom time
@@ -84,8 +84,9 @@ class TaskJobsValueClass {
           const previousJobsArray = get(this.TaskJobs)
           const matchArray = [] as IJob[]
           const notMatchArray = [] as IJob[]
+          console.log(previousJobsArray, matchArray, notMatchArray)
           previousJobsArray.forEach(job => {
-            if (job.value.match(new RegExp(regex, 'i'))) {
+            if (job.value.toLowerCase().includes(regex.toLowerCase())) {
               matchArray.push(job)
             } else {
               notMatchArray.push(job)
