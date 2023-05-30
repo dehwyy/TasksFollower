@@ -84,7 +84,6 @@ class TaskJobsValueClass {
           const previousJobsArray = get(this.TaskJobs)
           const matchArray = [] as IJob[]
           const notMatchArray = [] as IJob[]
-          console.log(previousJobsArray, matchArray, notMatchArray)
           previousJobsArray.forEach(job => {
             if (job.value.toLowerCase().includes(regex.toLowerCase())) {
               matchArray.push(job)

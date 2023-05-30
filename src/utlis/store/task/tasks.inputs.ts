@@ -40,7 +40,7 @@ class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType<TaskValu
     return atom<ISelectedTaskValue, [TaskValueAtomInputArgs], void>(
       {
         uid: taskUid,
-        value: '',
+        value: 'HELLO',
         inputValue: '',
       },
       (get, set, { value, action }) => {
