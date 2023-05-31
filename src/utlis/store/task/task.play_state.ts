@@ -11,25 +11,22 @@ interface ITaskPlayState {
   stagePassed: PrimitiveAtom<number>
 }
 
-interface ITaskPlayWithTimers extends ITaskPlayState {
-  jobTimer: NodeJS.Timer
-  restTimer: NodeJS.Timer
-}
-
-class TaskPlayStateClass implements ITaskPlayWithTimers {
+class TaskPlayStateClass implements ITaskPlayState {
+  private jobTimer: NodeJS.Timer
+  private restTimer: NodeJS.Timer
   jobsCount: number
   jobTime: number
   jobTimePassed: PrimitiveAtom<number>
   restTime: number
   restTimePassed: PrimitiveAtom<number>
-  jobTimer: NodeJS.Timer
-  restTimer: NodeJS.Timer
   stagePassed: PrimitiveAtom<number>
   restPassed: PrimitiveAtom<number>
 
   constructor() {
     this.JobStart = this.JobStart.bind(this)
     this.RestStart = this.RestStart.bind(this)
+    this.ReloadConstantData = this.ReloadConstantData.bind(this)
+    this.PauseTask = this.PauseTask.bind(this)
     this.jobsCount = (AppStore.get(TaskPlayData.jobs).value as string[]).length
     this.jobTime = AppStore.get(TaskPlayData.timeWork).value as number
     this.restTime = AppStore.get(TaskPlayData.timeRest).value as number
@@ -38,7 +35,23 @@ class TaskPlayStateClass implements ITaskPlayWithTimers {
     this.stagePassed = atom(0)
     this.restPassed = atom(0)
   }
+  public ReloadConstantData() {
+    this.jobsCount = (AppStore.get(TaskPlayData.jobs).value as string[])?.length || 0
+    this.jobTime = (AppStore.get(TaskPlayData.timeWork).value as number) || 0
+    this.restTime = (AppStore.get(TaskPlayData.timeRest).value as number) || 0
+    clearInterval(this.jobTimer)
+    clearInterval(this.restTimer)
+    const set = (key: keyof typeof this) => AppStore.set(this[key] as PrimitiveAtom<number>, 0)
+    set('jobTimePassed')
+    set('restTimePassed')
+    set('stagePassed')
+    set('restPassed')
+  }
 
+  public PauseTask() {
+    clearInterval(this.jobTimer)
+    clearInterval(this.restTimer)
+  }
   public JobStart() {
     this.jobTimer = setInterval(() => {
       // getting the current time that already passed
@@ -68,7 +81,7 @@ class TaskPlayStateClass implements ITaskPlayWithTimers {
     }, 1000)
   }
 
-  public RestStart() {
+  private RestStart() {
     this.restTimer = setInterval(() => {
       const currentTimePassed = AppStore.get(this.restTimePassed)
       if (currentTimePassed >= this.restTime) {
