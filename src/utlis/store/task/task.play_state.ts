@@ -9,18 +9,20 @@ interface ITaskPlayState {
   restTime: number
   restTimePassed: PrimitiveAtom<number>
   stagePassed: PrimitiveAtom<number>
+  isPaused: boolean
 }
 
 class TaskPlayStateClass implements ITaskPlayState {
-  private jobTimer: NodeJS.Timer
-  private restTimer: NodeJS.Timer
+  private jobTimer?: NodeJS.Timer
+  private restTimer?: NodeJS.Timer
   jobsCount: number
   jobTime: number
   jobTimePassed: PrimitiveAtom<number>
   restTime: number
   restTimePassed: PrimitiveAtom<number>
   stagePassed: PrimitiveAtom<number>
-  restPassed: PrimitiveAtom<number>
+  stageRestPassed: PrimitiveAtom<number>
+  isPaused = false
 
   constructor() {
     this.JobStart = this.JobStart.bind(this)
@@ -33,26 +35,34 @@ class TaskPlayStateClass implements ITaskPlayState {
     this.jobTimePassed = atom(0)
     this.restTimePassed = atom(0)
     this.stagePassed = atom(0)
-    this.restPassed = atom(0)
+    this.stageRestPassed = atom(0)
   }
   public ReloadConstantData() {
     this.jobsCount = (AppStore.get(TaskPlayData.jobs).value as string[])?.length || 0
     this.jobTime = (AppStore.get(TaskPlayData.timeWork).value as number) || 0
     this.restTime = (AppStore.get(TaskPlayData.timeRest).value as number) || 0
-    clearInterval(this.jobTimer)
-    clearInterval(this.restTimer)
     const set = (key: keyof typeof this) => AppStore.set(this[key] as PrimitiveAtom<number>, 0)
     set('jobTimePassed')
     set('restTimePassed')
     set('stagePassed')
-    set('restPassed')
+    set('stageRestPassed')
+    this.PauseTask()
   }
 
   public PauseTask() {
     clearInterval(this.jobTimer)
+    this.jobTimer = undefined
     clearInterval(this.restTimer)
+    this.restTimer = undefined
+    this.isPaused = true
   }
   public JobStart() {
+    if (this.isPaused && AppStore.get(this.restTimePassed) !== 0) {
+      AppStore.set(this.restTimePassed, AppStore.get(this.restTimePassed) + 1)
+      this.RestStart()
+      this.isPaused = false
+      return
+    }
     this.jobTimer = setInterval(() => {
       // getting the current time that already passed
       const currentTimePassed = AppStore.get(this.jobTimePassed)
@@ -72,7 +82,7 @@ class TaskPlayStateClass implements ITaskPlayState {
           this.RestStart()
         } else {
           // ClearingTimeout so it won;t start
-          AppStore.set(this.restPassed, AppStore.get(this.restPassed) + 1)
+          AppStore.set(this.stageRestPassed, AppStore.get(this.stageRestPassed) + 1)
           clearInterval(this.restTimer)
         }
       } else {
@@ -87,7 +97,7 @@ class TaskPlayStateClass implements ITaskPlayState {
       if (currentTimePassed >= this.restTime) {
         clearInterval(this.restTimer)
         AppStore.set(this.restTimePassed, 0)
-        AppStore.set(this.restPassed, AppStore.get(this.restPassed) + 1)
+        AppStore.set(this.stageRestPassed, AppStore.get(this.stageRestPassed) + 1)
         this.JobStart()
       } else {
         AppStore.set(this.restTimePassed, currentTimePassed + 1)

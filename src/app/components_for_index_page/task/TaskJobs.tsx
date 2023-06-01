@@ -2,14 +2,14 @@
 import { useAtomValue } from 'jotai'
 import { TaskPlayData } from '@/utlis/store/task/task.play'
 import useJobs from '@/utlis/hooks/play_hooks/useJobs'
+import useAllDataFromStore from '@/utlis/hooks/play_hooks/useAllDataFromStore'
 
 const TaskJobs = () => {
+  const { isValid } = useAllDataFromStore()
   const { value: jobs } = useAtomValue(TaskPlayData.jobs)
   const { totalProgress, getRestProgress } = useJobs()
-  console.log(totalProgress)
-  return (
+  return isValid ? (
     <>
-      111
       <div className="relative">
         <div style={{ height: 'calc(100% - 45px)' }} className="absolute bg-pinkLight min-w-[4px] left-[49%] right-[49%] top-[45px] ">
           <div
@@ -35,6 +35,8 @@ const TaskJobs = () => {
         </div>
       </div>
     </>
+  ) : (
+    <></>
   )
 }
 

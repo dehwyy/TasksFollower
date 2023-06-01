@@ -3,11 +3,11 @@ import { TaskPlayState } from '@/utlis/store/task/task.play_state'
 import { useEffect, useMemo } from 'react'
 
 export default function useJobs() {
-  const { jobTimePassed, restTimePassed, jobsCount, jobTime, restTime, stagePassed, restPassed, ReloadConstantData } = TaskPlayState
+  const { jobTimePassed, restTimePassed, jobsCount, jobTime, restTime, stagePassed, stageRestPassed, ReloadConstantData } = TaskPlayState
   const passedTimeJob = useAtomValue(jobTimePassed)
   const passedTimeRest = useAtomValue(restTimePassed)
   const passedStages = useAtomValue(stagePassed)
-  const passedRest = useAtomValue(restPassed)
+  const passedRestStages = useAtomValue(stageRestPassed)
 
   useEffect(() => {
     ReloadConstantData()
@@ -21,7 +21,7 @@ export default function useJobs() {
     // if Index is lower or equals to ALREADY PASSED stage => ZeroSpacing to the end;
     // else if Index equals to stage that WILL BE PASSED next => animation
     // else non-colored block
-    i <= passedRest ? '0px' : i === passedRest + 1 ? `calc(100% - ${restTime !== 0 ? (passedTimeRest / restTime) * 100 : 0}%)` : '100%'
+    i <= passedRestStages ? '0px' : i === passedRestStages + 1 ? `calc(100% - ${restTime !== 0 ? (passedTimeRest / restTime) * 100 : 0}%)` : '100%'
 
   return {
     totalProgress,
