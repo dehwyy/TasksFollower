@@ -4,8 +4,8 @@ interface IProps {}
 
 const Navbar = ({}: IProps) => {
   return (
-    <nav style={{ width: 'max(100%, 100vw)' }} className="text-pinkLight shadow-pink z-50 fixed left-0 right-0">
-      <div className="mx-auto flex justify-center w-3/5 lg:w-4/5 sm:w-full text-xl py-5">
+    <nav style={{ width: 'max(100%, 100vw)' }} className="text-pinkLight shadow-pink z-50 fixed left-0 right-0 bg-backgroundColor">
+      <div className="mx-auto flex justify-center w-3/5 lg:w-4/5 sm:w-full text-xl pt-5 pb-2">
         <div className="flex sm:flex-col ">
           <BasicNavItem link="/setup">Setup Tasks</BasicNavItem>
           <Link href="/">
