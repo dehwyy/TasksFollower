@@ -1,5 +1,5 @@
 'use client'
-import TaskButton from '@/app/components_for_index_page/task/TaskButton'
+import TaskButton from '@/app/components_for_index_page/task/LEGACYTaskButton'
 import useAllDataFromStore from '@/utlis/hooks/play_hooks/useAllDataFromStore'
 import { TaskPlayState } from '@/utlis/store/task/task.play_state'
 import { useCallback } from 'react'

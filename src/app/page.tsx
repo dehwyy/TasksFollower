@@ -1,5 +1,5 @@
 import InfoShort from '@/app/components_for_index_page/InfoShort/Component'
-import Task from '@/app/components_for_index_page/task/Component'
+import Task from '@/app/components_for_index_page/Task/Component'
 
 interface IProps {}
 

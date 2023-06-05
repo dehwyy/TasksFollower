@@ -8,15 +8,14 @@ body {
     color: #f3f3f3;
     overflow-x: hidden;
     @apply relative;
-    @apply bg-backgroundColor
+    @apply bg-backgroundColor;
 }
-
 .block-item {
-    @apply select-none bg-violetPale border-2 border-violetBorderPale
+    @apply select-none bg-violetPale border-2 border-violetBorderPale;
 }
 
 .block-item-hover {
-    @apply select-none bg-violetPale hover:bg-violetLighter border-2 border-violetBorderPale hover:border-violetBorderLighter transition-all duration-300 cursor-pointer
+    @apply select-none bg-violetPale hover:bg-violetLighter border-2 border-violetBorderPale hover:border-violetBorderLighter transition-all duration-300 cursor-pointer;
 }
 
 ::-webkit-scrollbar {
