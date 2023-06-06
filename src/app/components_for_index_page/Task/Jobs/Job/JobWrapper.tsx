@@ -3,7 +3,7 @@ interface IProps {
 }
 
 const JobWrapper = ({ children }: IProps) => {
-  return <div className="w-full text-center">{children}</div>
+  return <div className="w-full text-center text-xl">{children}</div>
 }
 
 export default JobWrapper

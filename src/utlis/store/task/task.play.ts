@@ -42,3 +42,5 @@ class TaskPlayDataClass implements Record<TaskPlayKeys, TaskPlayAtom> {
 }
 
 export const TaskPlayData = new TaskPlayDataClass()
+
+//TODO: refactor this file to better type support
