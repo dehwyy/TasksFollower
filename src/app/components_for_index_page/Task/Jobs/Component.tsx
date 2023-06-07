@@ -7,7 +7,7 @@ import useJobs from '@/utlis/hooks/play_hooks/useJobsNew'
 
 const Component = () => {
   const { value: jobs } = useAtomValue(TaskPlayData.jobs)
-  const { restStagesPassed, restPercentage, workStagesPassed, workPercentage } = useJobs()
+  const { restStagesPassed, restPercentage, workStagesPassed, workPercentage, PauseJob, StartJob, ResetAllAndPause, isPlaying } = useJobs()
   return (
     <div className="w-full flex flex-col">
       {Array.isArray(jobs) &&
@@ -20,7 +20,7 @@ const Component = () => {
             {job}
           </Job>
         ))}
-      <Buttons />
+      <Buttons isPlaying={isPlaying} pause={PauseJob} play={StartJob} reset={ResetAllAndPause} />
     </div>
   )
 }

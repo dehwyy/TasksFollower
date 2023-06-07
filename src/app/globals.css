@@ -19,7 +19,7 @@ body {
 }
 
 .shadowed-text {
-    text-shadow: 2px 2px 1px #333333;
+    text-shadow: 1px 1px 1px #333333;
 }
 
 ::-webkit-scrollbar {

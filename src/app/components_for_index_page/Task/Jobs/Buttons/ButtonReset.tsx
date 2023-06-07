@@ -1,11 +1,14 @@
 import ButtonEachWrapper from './ButtonEachWrapper'
 
-interface IProps {}
+interface IProps {
+  isPlaying: boolean
+  callback: () => void
+}
 
-const ButtonReset = ({}: IProps) => {
+const ButtonReset = ({ callback, isPlaying }: IProps) => {
   return (
-    <ButtonEachWrapper extraClasses="bg-bluePale">
-      <button>Reset</button>
+    <ButtonEachWrapper callback={isPlaying ? callback : () => {}} extraClasses={`${isPlaying || 'opacity-50 '} bg-bluePale rounded-r-xl`}>
+      Reset
     </ButtonEachWrapper>
   )
 }

@@ -1,10 +1,11 @@
 import { TaskPlayData } from '@/utlis/store/task/task.play'
-import { log } from 'console'
 import { useAtomValue } from 'jotai'
 import { useCallback, useMemo, useState } from 'react'
 import { useInterval } from 'usehooks-ts'
 interface IArgs {}
 
+// ! I Should make globalStore, not hook
+// TODO: !!!
 export default function useJobs() {
   // * getting constant data from another store
   const jobsCount = (useAtomValue(TaskPlayData.jobs).value as string[]).length
@@ -93,5 +94,6 @@ export default function useJobs() {
     workStagesPassed,
     restPercentage,
     restStagesPassed,
+    isPlaying,
   }
 }

@@ -1,8 +1,15 @@
 import ButtonEachWrapper from './ButtonEachWrapper'
 
-interface IProps {}
+interface IProps {
+  isPlaying: boolean
+  callback: () => void
+}
 
-const ButtonPause = ({}: IProps) => {
-  return <ButtonEachWrapper extraClasses="bg-yellowPale">Pause</ButtonEachWrapper>
+const ButtonPause = ({ callback, isPlaying }: IProps) => {
+  return (
+    <ButtonEachWrapper callback={isPlaying ? callback : () => {}} extraClasses={`${isPlaying || 'opacity-50'} bg-yellowPale`}>
+      Pause
+    </ButtonEachWrapper>
+  )
 }
 export default ButtonPause
