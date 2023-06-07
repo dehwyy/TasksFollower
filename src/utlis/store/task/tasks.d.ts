@@ -16,6 +16,11 @@ interface ITaskOption {
   values: ITaskOptionItem[]
 }
 
+interface SetterArg {
+  selectedOptionUid: TaskUid | null
+  timeout: number
+}
+
 interface TaskOptionSelectedType {
   selectedOptionUid: TaskUid | null
   isOpen: boolean

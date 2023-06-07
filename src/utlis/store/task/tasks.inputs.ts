@@ -7,7 +7,7 @@ type TaskValueAtomInputArgs = { value: string; action: TaskValueAtomInputActionT
 // args for both TaskWithInput and withoutInput
 type TaskValueArgs = number | string | TaskValueAtomInputArgs
 // AtomType for both
-type TaskValueAtomType<T extends TaskValueArgs> = WritableAtom<ISelectedTaskValue, T, void>
+type TaskValueAtomType<T extends TaskValueArgs> = WritableAtom<ISelectedTaskValue, [T], void>
 
 class TaskOptionValueClass implements Record<TaskUid, TaskValueAtomType<TaskValueArgs>> {
   title: TaskValueAtomType<TaskValueAtomInputArgs>

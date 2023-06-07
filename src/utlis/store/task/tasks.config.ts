@@ -1,11 +1,6 @@
 import { atom, PrimitiveAtom, WritableAtom } from 'jotai'
 import { TaskJobsValue } from '@/utlis/store/task/tasks.jobs'
 
-type SetterArg = {
-  selectedOptionUid: TaskUid | null
-  timeout: number
-}
-
 class TaskOptionDataClass {
   localTimeout: NodeJS.Timeout | null = null
   StaticData: PrimitiveAtom<ITaskOption[]>

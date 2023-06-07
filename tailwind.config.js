@@ -7,8 +7,8 @@ module.exports = {
         unselectedSelected: '1px 1px 2px rgba(0, 0, 0, 0.1)',
       },
       colors: {
-        forShadowYellow: 'rgba(255, 169, 76, 1)', // old
-        forShadowBlue: 'rgba(29,185,197,1)', // old
+        yellowPale: 'rgba(255, 169, 76, 1)',
+        bluePale: 'rgba(29,185,197,1)',
         backgroundColor: 'rgb(17, 24, 39)',
         backgroundColorSecond: 'rgb(77,68,90)',
         pinkLight: 'rgb(255, 214, 235)',

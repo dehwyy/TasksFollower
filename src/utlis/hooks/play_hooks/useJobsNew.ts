@@ -1,6 +1,7 @@
 import { TaskPlayData } from '@/utlis/store/task/task.play'
+import { log } from 'console'
 import { useAtomValue } from 'jotai'
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useInterval } from 'usehooks-ts'
 interface IArgs {}
 
@@ -60,6 +61,13 @@ export default function useJobs() {
     // NULL values means that INTERVAL is CLEARED
     // @more -> https://usehooks-ts.com/react-hook/use-interval
   )
+  // * Percentage for WorkTime and RestTime
+  const workPercentage = useMemo(() => {
+    return 100 - (workTimePassed / workTimeFull) * 100
+  }, [workTimePassed, workTimeFull])
+  const restPercentage = useMemo(() => {
+    return 100 - (restTimePassed / restTimeFull) * 100
+  }, [restTimePassed, restTimeFull])
   //
   const StartJob = useCallback(() => {
     setIsPlaying(true)
@@ -81,11 +89,9 @@ export default function useJobs() {
     StartJob,
     PauseJob,
     ResetAllAndPause,
-    workTimePassed,
-    workTimeFull,
+    workPercentage,
     workStagesPassed,
-    restTimePassed,
-    restTimeFull,
+    restPercentage,
     restStagesPassed,
   }
 }

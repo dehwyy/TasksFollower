@@ -18,6 +18,10 @@ body {
     @apply select-none bg-violetPale hover:bg-violetLighter border-2 border-violetBorderPale hover:border-violetBorderLighter transition-all duration-300 cursor-pointer;
 }
 
+.shadowed-text {
+    text-shadow: 2px 2px 1px #333333;
+}
+
 ::-webkit-scrollbar {
     width: 0.7vw;
 }

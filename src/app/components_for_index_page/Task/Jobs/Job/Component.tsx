@@ -1,4 +1,4 @@
-'use client'
+import JobFinal from './JobFinal'
 import JobRest from './JobRest'
 import JobWork from './JobWork'
 import JobWrapper from './JobWrapper'
@@ -6,13 +6,15 @@ import JobWrapper from './JobWrapper'
 interface IProps {
   children: React.ReactNode
   isLast: boolean
+  workPercentage: number
+  restPercentage: number
 }
 
-const Component = ({ children, isLast }: IProps) => {
+const Component = ({ children, isLast, workPercentage, restPercentage }: IProps) => {
   return (
     <JobWrapper>
-      <JobWork>{children}</JobWork>
-      <JobRest isLast={isLast} />
+      <JobWork percentage={workPercentage}>{children}</JobWork>
+      {isLast ? <JobFinal /> : <JobRest percentage={restPercentage} />}
     </JobWrapper>
   )
 }
