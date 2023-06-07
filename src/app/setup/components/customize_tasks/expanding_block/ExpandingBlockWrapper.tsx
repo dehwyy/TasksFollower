@@ -11,7 +11,7 @@ const ExpandingBlockWrapper = ({ children }: IProps) => {
   return (
     <div
       style={{ paddingLeft: 'calc(100vw - 100%)' }}
-      className={`${isOpen ? 'bottom-[85%]' : 'bottom-0'} fixed left-0 right-0 flex justify-center transition-all duration-700`}>
+      className={`${isOpen ? 'bottom-[85%]' : 'bottom-0'} fixed z-30 left-0 right-0 flex justify-center transition-all duration-700`}>
       <div className="relative transition-all duration-700 bg-backgroundColor rounded-t-2xl">{children}</div>
     </div>
   )
